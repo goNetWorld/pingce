@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="../static/css/jquery-responsive-tables.css" />
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <script type="text/javascript" src="../static/js/jquery-1.10.2.min.js"></script>
+    <meta charset="UTF-8">
+    <title>公示表添加元素</title>
+    <style type="text/css">
+        a{
+            text-decoration: none;
+        }
+        table {
+            border: 1px solid #3F6558;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 0 10px;
+            border: 1px solid #000000;
+            text-align: center;
+        }
+        body{
+            background: white;
+        }
+        td{
+            font-weight: 500;
+        }
+        th,td{
+            font-size: 20px;
+        }
+        .userInput{
+            border-radius: 0px;
+            border: 0px;
+            border-bottom: 1px solid black;
+            line-height: 20px;
+            text-align: left;
+            bottom: 5px;
+            position: relative;
+            background: white;
+            max-width: 10em;
+            width: 8em;
+        }
+        .sign{
+            width: 50%;
+            float: left;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        p{
+            text-align: left;
+        }
+        td,.sign {
+            font-size: 15px;
+            line-height: 20px;
+        }
+        .step1{
+            width: 3em;
+            border-left: 30px solid cyan;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+        }
+        .middle{
+            color: deepskyblue;
+        }
+        #images>.imgItems>img{
+            height: 40px;
+            width: 40px;
+            line-height: 40px;
+        }
+        #images>.imgItems{
+            float: left;
+            margin: 3px;
+        }
+        #appendImg,#appendItem{
+            height: 35px;
+            width: 35px;
+            font-size: 35px;
+            margin-left: 8px;
+            margin-top: 2px;
+        }
+        #uploadBar{
+            visibility: visible;
+            height: 20px;
+            margin: -10px 0px;
+        }
+        select{
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+        .iptItems{
+            margin: 6px 0px;
+            position: relative;
+        }
+        .iptItems>input{
+            text-align: left;
+        }
+        .iptItems>img{
+            height: 40px;
+            width: 40px;
+            margin-top: -5px;
+        }
+        .glyphicon-edit{
+            font-size: 24px;
+            margin: 3px 0px;
+        }
+        #qualityItem{
+            text-align: left;
+            margin: 0px;
+        }
+        #qualityItem>label{
+            margin: 5px 0px;
+
+        }
+        .userUploadImage{
+            height: 40px;
+            width: 40px;
+        }
+        #getReward>.row{
+            /*text-align: left;*/
+            margin: 5px 0px;
+        }
+        label>span>input{
+            width: 20%;
+        }
+        input{
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            margin: 5px 5px;
+        }
+        a:active{
+            color: #ffffff;
+        }
+        *{
+            color: #000;
+        }
+        img{
+            border-radius: 5px;
+        }
+        .appendImg{
+            height: 20px;
+            width: 20px;
+        }
+        .deleteImg{
+            margin-left: 0px;
+            height: 20px;
+            width: 20px;
+        }
+        .appendItem{
+            text-align: center;
+            height: 40px;
+            width: 40px;
+        }
+        a:hover{
+            text-decoration:none;
+        }
+        a:active{
+            text-decoration:none;
+        }
+        .deleteItem{
+            text-align: center;
+            height: 40px;
+            width: 40px;
+        }
+        body{
+            margin: 20px;
+            padding: 20px;
+        }
+        .items{
+            border-radius: 5px;
+            border:solid 1px black;
+            padding: 5px;
+        }
+        img{
+            height: 50px;
+            width: 50px;
+            text-align: center;
+        }
+        .childItem{
+            border-radius: 10px;
+            border: red dashed 1px;
+        }
+        body{
+            width: 80%;
+            margin: auto;
+        }
+        .items{
+            margin: 3px 0px;
+        }
+        .childItem{
+            margin: 3px;
+        }
+        .valueCls{
+            width: 4em;
+        }
+        .nameCls{
+            width:9em ;
+        }
+        .glyphicon{
+            top: -12px;
+            left: -20px;
+            position: relative;
+            height: 5px;
+            width: 5px;
+        }
+        textarea{
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+        }
+        #education{
+            padding-left: 30%;
+        }
+    </style>
+</head>
+<body>
+<div class="row" style="border-bottom: solid 1px antiquewhite;padding-top: 10px">
+    <div class="col-md-4">工号:2018200962</div>
+    <div class="col-md-4">
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+                填写:参评人员教学工作综合测评计分表
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4" style="top: -8px;">
+        <img src="../static/images/defuser.png" alt="" style="height: 40px;width: 40px">
+        妖孽只在夜里哭
+    </div>
+</div>
+<div style="display: none;">
+    <a id="test" href="#technologyResultValue" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#technologyResultValue" style="float: right;">
+    </a>
+    <a id="test2" href="#imgResult" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#imgResult" style="float: right;">
+    </a>
+</div>
+<h4>填写更多详细信息</h4>
+<div class="items" id="education">
+    <form action="" id="data">
+        参加工作时间:<input type="text" name="startDate"><br>
+        所学专业:<input type="text" name="major"><br>
+        现从事专业:<input type="text" name="currmajor"><br>
+        外语成绩:<input type="text" name="english"><br>
+        计算机成绩:<input type="text" name="cs"><br>
+        是否破格:<input type="text" name="poge"><br>
+        现任专业技术职务:<input type="text" name="zhiwu" placeholder="技术职务"><br>
+        专业技术职务上任时间<input type="text" name="zhiwuDate" placeholder="时间"><br>
+        毕业时间:<input type="text" name="gradeDate"><br>
+        毕业学校:<input type="text" name="school"><br>
+        学习类型:<input type="text" name="studyType"><br>
+        指导青年教师情况:<textarea name="teenStatus" cols="20" rows="2">
+    </textarea><br><br>
+        指导研究生情况:<textarea name="graduateStatus" cols="20" rows="2"></textarea><br><br>
+        主持研究项目数:<input type="text" name="zhuchiCount"><br>
+        参与研究项目数:<input type="text" name="canyuCount"><br>
+        成果鉴定项目数:<input type="text" name="chengguoCount"><br>
+        技术开发或社会服务项目数:<input type="text" name="jishuCount"><br>
+    </form>
+</div>
+<hr>
+<div style="text-align: center;font-size: 30px;margin-top: 10px">
+    <a href="/index">
+        <button>
+            保存数据
+        </button>
+    </a>
+</div>
+<img src="../static/images/defuser.png" style="display: none" id="imgElement">
+</body>
+<script type="application/javascript">
+    $("input").each(function () {
+       this.setAttribute("readonly","readonly");
+       console.log(this)
+    });
+    $("textarea").each(function () {
+       this.setAttribute("readonly","readonly");
+       console.log(this)
+    });
+</script>
+</html>

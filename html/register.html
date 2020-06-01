@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <script type="application/javascript" src="../static/js/jquery-1.10.2.min.js"></script>
+    <style>
+        .content{
+            margin: 100px auto;
+            width: 60%;
+            text-align: center;
+        }
+        .content>form>div{
+            margin: 3px 0px;
+        }
+    </style>
+</head>
+<body>
+<div class="row" style="border-bottom: solid 1px antiquewhite;display: none;">
+    <div class="col-md-12">欢迎来到注册界面!</div>
+</div>
+<div class="content">
+    <p id="tips"></p>
+    <form action="" method="post">
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">账号</span>
+            <input id="account" type="text" class="form-control" placeholder="用于登录的账号" aria-describedby="sizing-addon1">
+        </div>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">密码</span>
+            <input id="password" type="text" class="form-control" placeholder="用于登录的密码" aria-describedby="sizing-addon1">
+        </div>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">真实姓名</span>
+            <input id="realName" type="text" class="form-control" placeholder="用于审核和提交审核" aria-describedby="sizing-addon1">
+        </div>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">身份证</span>
+            <input id="idCord" type="text" class="form-control" placeholder="用于确定信息的真实性" aria-describedby="sizing-addon1">
+        </div>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">所属部门</span>
+            <input id="department" type="text" class="form-control" placeholder="例:财务部" aria-describedby="sizing-addon1">
+        </div>
+        <button type="button" onclick="collectData()" style="font-size: 30px;background: lightseagreen;color: white;border-radius: 10px">
+            <a href="#" >
+                提交数据
+            </a>
+        </button>
+    </form>
+</div>
+</body>
+<script type="application/javascript">
+    serverAddr='http://192.168.43.161:8080/';
+    function collectData() {
+        form=new FormData();
+        form.append('id',document.getElementById('account').value);
+        form.append('password',document.getElementById('password').value);
+        form.append('realName',document.getElementById('realName').value);
+        form.append('identification',document.getElementById('idCord').value);
+        form.append('department',document.getElementById('department').value);
+        $.ajax({
+            type: 'post',
+            url: serverAddr+'users/register',
+            data: form,
+            async:'true',
+            success: function (result) {
+                try {
+                    if(result.code=='0'){
+                        document.getElementById('tips').innerText=result.message;
+                        setTimeout(function () {
+                            window.location.href='login.html';
+                        },1000);
+                    }
+                    document.getElementById('tips').innerText=result.message;
+                }catch (e) {
+                    return
+                }
+            },
+            error:function(e){
+                console.log(e)
+            },
+            contentType:false,
+            processData:false,
+        });
+    }
+</script>
+</html>

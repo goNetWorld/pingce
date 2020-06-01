@@ -1,0 +1,392 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>用户提交表信息</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+<script type="text/javascript" src="../static/js/jquery-1.10.2.min.js" th:href="@{/css/jquery-1.10.2.min.js}"></script>
+<script type="text/javascript" src="../static/js/Util.js" th:href="@{/css/Util.js}"></script>
+<script type="text/javascript" src="../static/js/modal.js" th:href="@{/css/modal.js}"></script>
+<script type="text/javascript" src="../static/js/JqueryMedia.js" th:href="@{/css/JqueryMedia.js}"></script>
+<script type="text/javascript" src="../static/js/dropdown.js" th:href="@{/css/dropdown.js}"></script>
+	<style type="text/css">
+		.row>.col-md-3{
+			margin: 3px 0px;
+		}
+		h4{
+			text-align: center;
+		}
+		.modal-footer{
+			text-align: center;
+		}
+		td{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+<div class="row" style="border-bottom: solid 1px antiquewhite;margin: auto;margin-top: 20px;text-align: center">
+	<div class="col-md-6">工号:20180932</div>
+	<div class="col-md-6">
+		<img src="../static/images/defuser.png" alt="" style="height: 40px;width: 40px">
+		<div class="btn-group">
+			<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				妖孽只在夜里哭
+			<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li>
+					<a href="#addPrivilege" data-toggle="modal" data-target="#addPrivilege">
+					修改密码
+					</a>
+				</li>
+				<li><a href="#">退出登录</a></li>
+			</ul>
+		</div>
+	</div>
+
+</div>
+<div style="display: none;">
+	<a id="test" href="#technologyResultValue" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#technologyResultValue" style="float: right;">
+	</a>
+	<a id="test2" href="#imgResult" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#imgResult" style="float: right;">
+	</a>
+</div>
+<div class="row" style="margin: auto;margin-top: 20px;text-align: center">
+	<div class="col-md-3">
+		<a href="#searchUser" class="btn btn-default" data-toggle="modal" data-target="#searchUser">
+			权限管理
+		</a>
+	</div>
+	<div class="col-md-3">
+		<a href="#openManage" class="btn btn-default" data-toggle="modal" data-target="#openManage">
+			查看现有审核员
+		</a>
+	</div>
+	<div class="col-md-3">
+		<a href="#alterOther" class="btn btn-default" data-toggle="modal" data-target="#alterOther">
+			修改审核员密码
+		</a>
+	</div>
+	<div class="col-md-3">
+		<a href="#searchManage" class="btn btn-default" data-toggle="modal" data-target="#searchManage">
+			添加新审核员
+		</a>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12" style="padding:2em 0;">
+			<div class="table-responsive">
+			<table class="table table-bordered table-striped" id="test_table">
+				<thead>
+				  <tr>
+					<td>用户编号</td>
+					<td>姓名</td>
+					<td>教学表</td>
+					<td>科研表</td>
+					<td>公示表</td>
+					<td>年龄</td>
+					<td>性别</td>
+					<td>所属部门</td>
+					<td>审核状态</td>
+					<td>提交时间</td>
+				  </tr>
+				</thead>
+				<tbody>
+				  <tr>
+					<td>
+						<span>20180932</span>
+					</td>
+					<td>
+						<span>妖孽只在夜里哭</span>
+					</td>
+					<td>
+						<a href="verificationTable1.html">点击查看</a>
+					</td>
+					<td>
+						<a href="verificationTable1.html">点击查看</a>
+					</td>
+					<td>
+						<a href="verificationTable1.html">点击查看</a>
+					</td>
+					<td>
+						<span>18</span>
+					</td>
+					<td>
+						<span>男</span>
+					</td>
+					<td>
+						<span>教务处</span>
+					</td>
+					<td>
+						<span>已提交</span>
+					</td>
+					<td>
+						<span>2018-5-20</span>
+					</td>
+				</tr>
+				</tbody>
+			  </table>
+			</div>
+		</div>
+	</div>
+</div>
+<!--这边对用户进行添加信息,不进行额外的跳转!直接在一个界面中进行修复-->
+<div class="modal fade" id="searchUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document" style="width: 80%;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4>搜索管理员/教师</h4>
+			</div>
+			<div class="modal-body">
+				<div class="input-group input-group-sm">
+					<input type="text" class="form-control" placeholder="手机号/真实姓名" aria-describedby="sizing-addon3">
+					<span class="input-group-addon">搜索用户</span>
+				</div>
+				<br>
+				<div class="table-responsive">
+					<table class="table table-bordered table-striped">
+						<thead>
+						<tr>
+							<td><p>用户ID</p></td>
+							<td><p>真实姓名</p></td>
+							<td><p>手机号</p></td>
+							<td><p>所属部门</p></td>
+							<td><p>表1权限</p></td>
+							<td><p>表2权限</p></td>
+							<td><p>删除管理员</p></td>
+						</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<span>20180932</span>
+								</td>
+								<td>
+									<span>妖孽只在夜里哭</span>
+								</td>
+								<td>
+									<span>2016</span>
+								</td>
+								<td>
+									<span>信息和科学系</span>
+								</td>
+								<td>
+									<p class="privilege">
+										<input type="checkbox">&nbsp;学历
+									</p>
+									<p class="privilege">
+										<input type="checkbox">&nbsp;师德师风
+									</p>
+									<p class="privilege">
+										<input type="checkbox">&nbsp;教学工作量
+									</p>
+									<p class="privilege">
+										<input type="checkbox">&nbsp;教学质量
+									</p>
+									<p class="privilege">
+										<input type="checkbox">&nbsp;教学改革研究
+									</p>
+								</td>
+								<td>
+									<p class="privilege">
+										<input type="checkbox">&nbsp;科研立项
+									</p>
+									<p class="privilege">
+										<input type="checkbox">&nbsp;科研结题
+									</p>
+									<p class="privilege">
+										<input type="checkbox">&nbsp;科技成果
+									</p>
+									<p class="privilege">
+										<input type="checkbox">&nbsp;著作/艺术作品
+									</p>
+									<p class="privilege">
+										<input type="checkbox">&nbsp;科技成果转化
+									</p>
+									<p class="privilege">
+										<input type="checkbox">&nbsp;特派员
+									</p>
+									<p class="privilege">
+										<input type="checkbox">&nbsp;三区人才
+									</p>
+								</td>
+								<td>
+									<button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">删除</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button id="submitProject" type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">取消</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="openManage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				现有管理员
+			</div>
+			<div class="modal-body">
+					<table class="table table-bordered table-striped" style="margin: 5px 0px">
+						<thead>
+						<tr>
+							<td>用户ID</td>
+							<td>真实姓名</td>
+							<td>手机号</td>
+							<td>所属部门</td>
+							<td>开启/关闭</td>
+						</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>12</td>
+								<td>32</td>
+								<td>32</td>
+								<td>32</td>
+								<td style="text-align: center;">
+									<button type="button" class="btn btn-default" onclick="alterManageStatus(this)">开启</button>
+								</td>
+							</tr>
+						<tbody/>
+					</table>
+					<nav aria-label="Page navigation" style="text-align: center;">
+						  <ul class="pagination">
+								<li>
+								  <a href="#" aria-label="Previous">
+									<span aria-hidden="true">&laquo;</span>
+								  </a>
+								</li>
+								<li><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li>
+								  <a href="#" aria-label="Next">
+									<span aria-hidden="true">&raquo;</span>
+								  </a>
+								</li>
+						  </ul>
+					</nav>
+			</div>
+			<div class="modal-footer">
+				321
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="addPrivilege" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				修改密码
+			</div>
+            <div class="modal-body">
+				  <input type="text" class="form-control" placeholder="旧密码" aria-describedby="sizing-addon1" style="width: 100%;margin: 5px 0px;height: 45px">
+				  <input type="text" class="form-control" placeholder="新密码" aria-describedby="sizing-addon1" style="width: 100%;margin: 5px 0px;height: 45px">
+				  <input type="text" class="form-control" placeholder="确定密码" aria-describedby="sizing-addon1" style="width: 100%;margin: 5px 0px;height: 45px">
+            </div>
+			<div class="modal-footer">
+				<button id="alterPassword" type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">取消</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="alterOther" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				修改密码
+			</div>
+            <div class="modal-body">
+				<div class="input-group input-group-sm">
+					<input type="text" class="form-control" placeholder="手机号/真实姓名" aria-describedby="sizing-addon3">
+					<span class="input-group-addon">搜索用户</span>
+				</div>
+					<table class="table table-bordered table-striped" style="margin: 5px 0px">
+						<thead>
+						<tr>
+							<td><p>用户ID</p></td>
+							<td><p>真实姓名</p></td>
+							<td><p>手机号</p></td>
+							<td><p>所属部门</p></td>
+						</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>12</td>
+								<td>32</td>
+								<td>32</td>
+								<td>32</td>
+							</tr>
+						<tbody/>
+					</table>
+				  <input type="text" class="form-control" placeholder="确定密码" aria-describedby="sizing-addon1" style="width: 100%;margin: 5px 0px;height: 45px">
+            </div>
+			<div class="modal-footer">
+				<button id="" type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">取消</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="searchManage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				123
+			</div>
+			<div class="modal-body">
+				searchManage
+			</div>
+			<div class="modal-footer">
+				321
+			</div>
+		</div>
+	</div>
+</div>
+<script type="application/javascript">
+	$(".privilege").each(function (i,e) {
+		this.addEventListener('click',function () {
+			this.firstElementChild.checked='checked';
+        });
+    });
+	function alterManageStatus(t) {
+		mid=t.parentElement.firstElementChild.innerText;
+		console.log(mid)
+    }
+    function resetPassword() {
+		d=new FormData();
+		$.ajax({
+            type: 'post',
+            url: '/resetPassword',
+            data: d,
+            async:'true',
+            success: function (result) {
+                try {
+                    result=JSON.parse(result);
+                    if(result.code=="0"){
+                        imgElement.src=result.msg;
+                    }
+                }catch (e) {
+                    console.log(e);
+                    return
+                }
+            },
+            contentType:false,
+            processData:false,
+        });
+    }
+</script>
+</body>
+</html>

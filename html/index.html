@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <script type="application/javascript" src="../static/js/jquery-1.10.2.min.js"></script>
+    <script type="application/javascript" src="../static/js/bootstrap.js"></script>
+    <style type="text/css">
+        .content{
+            /*text-indent: 2em;*/
+            text-align: center;
+        }
+        .content>a{
+            line-height: 40px;
+        }
+        .itemTitle{
+            text-align: center;
+        }
+        .tableItems a{
+            font-size: 12px;
+            margin: 3px;
+        }
+        .h4Center{
+            text-align: center;
+        }
+        .modal-body{
+            left: 30%;
+        }
+        .modal-body>h4>input{
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="row" style="border-bottom: solid 1px antiquewhite;margin: auto;margin-top: 20px;text-align: center">
+	<div class="col-md-12">
+		<img src="../static/images/defuser.png" alt="" style="height: 40px;width: 40px">
+		<div class="btn-group">
+			<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				{{result[0]}}
+			<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li>
+                    <a href="#showInfo" class="btn btn-default" data-toggle="modal" data-target="#showInfo">
+                        查看个人信息
+                    </a>
+                </li>
+				<li>
+                    <a href="#alterPassword" class="btn btn-default" data-toggle="modal" data-target="#alterPassword">
+                        修改密码
+                    </a>
+                </li>
+				<li><a href="#">退出登录</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="row" style="width: 80%;margin: 2% auto">
+    <div style="width: 49%;float: left">
+        <div class="thumbnail">
+            <img src="../static/images/defuser.png" alt="提交申请">
+            <div class="caption">
+                <h3 class="itemTitle">填写申请表</h3>
+                <p class="content">
+                    填写的信息只保存,不会提交给老师进行审核!
+                    <br>
+                </p>
+            </div>
+        </div>
+        <p class="tableItems"  style="text-align: center;position: relative;">
+            <a href="/alterTable1" class="btn btn-primary" role="button">教学工作表</a>
+            <a href="/alterTable2" class="btn btn-primary" role="button">科研业绩表</a>
+            <a href="/alterTable3" class="btn btn-primary" role="button">公示表</a>
+        </p>
+    </div>
+    <div style="width: 49%;float: left">
+        <div class="thumbnail">
+            <img src="../static/images/defuser.png" alt="提交申请">
+            <div class="caption">
+                <h3 class="itemTitle">修改申请信息</h3>
+                <p class="content">
+                    提交过申请后,将不能再次提交申请,需要完成本次的信息才能进行下次的提交!
+                    <br>
+                </p>
+            </div>
+        </div>
+        <p class="tableItems"  style="text-align: center;position: relative;">
+            <a href="/verificationTable1" class="btn btn-primary" role="button">教学工作表</a>
+            <a href="/verificationTable2" class="btn btn-primary" role="button">科研业绩表</a>
+            <a href="/verificationTable3" class="btn btn-primary" role="button">公示表</a>
+        </p>
+    </div>
+</div>
+<div class="container">
+    <h4 class="h4Center">所有提交过的数据信息</h4>
+	<div class="row">
+		<div class="col-md-12" style="padding:2em 0;">
+			<div class="table-responsive">
+			<table class="table table-bordered table-striped" id="test_table">
+				<thead>
+				  <tr>
+					<td>教学工作综合测评计分表</td>
+					<td>审核状态</td>
+					<td>科研水平、业绩计分表</td>
+					<td>审核状态</td>
+					<td>公示表</td>
+					<td>审核状态</td>
+					<td>最终状态</td>
+					<td>提交时间</td>
+					<td>提交到人事处</td>
+				  </tr>
+				</thead>
+				<tbody>
+				{%for i in range(0)%}
+				  <tr>
+					<td>
+						<a href="/verificationTable1?id={{item[0][i]}}">点击查看</a>
+					</td>
+					<td>
+						已填写
+					</td>
+					<td>
+						<a href="/verificationTable2?id={{item[1][i]}}">点击查看</a>
+					</td>
+					<td>
+						审核中
+					</td>
+					<td>
+						<a href="/verificationTable3?id={{item[2][i]}}">点击查看</a>
+					</td>
+					<td>
+						等待审核完成
+					</td>
+					<td>
+						2013-3-4
+					</td>
+					<td>
+						审核成功
+					</td>
+					<td>
+                        <a href="#sureStatus" class="btn btn-default" data-toggle="modal" data-target="#sureStatus">
+                            确定提交
+                        </a>
+					</td>
+				</tr>
+				{%end%}
+				</tbody>
+			  </table>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="sureStatus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="h4Center">是否确定提交填写信息</h4>
+			</div>
+			<div class="modal-body">
+				<h4>填写时间: <span>2013-3-4</span></h4>
+				<h4>提交时间: <span>2013-3-5</span></h4>
+				<h4>部门: <span>{{result[3]}}</span></h4>
+				<h4>姓名: <span>{{result[0]}}</span></h4>
+			</div>
+            <div class="modal-footer" style="text-align: center">
+                <p>点击确定之后将会将数据提交到教务处进行审核,并且不能再进行修改.只能联系相关老师进行修改操作!</p>
+                <button id="submitReward" type="button" class="btn btn-default" data-dismiss="modal">确定提交</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">取消</button>
+            </div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="showInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="h4Center">{{result[0]}}</h4>
+			</div>
+			<div class="modal-body">
+                <form id="setInfo">
+                    <h4>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名: <input type="text" value="{{result[0]}}" readonly></h4>
+                    <h4>手机&nbsp;&nbsp;&nbsp;号: <input type="text" value="{{result[2]}}" readonly></h4>
+                    <h4>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别: <input type="text" value="{{result[1]}}" readonly></h4>
+                    <h4>所属部门: <input type="text" value="{{result[3]}}" readonly></h4>
+                </form>
+			</div>
+            <div class="modal-footer" style="text-align: center">
+                <p>点击确定之后将会将数据提交到教务处进行审核,并且不能再进行修改.只能联系相关老师进行修改操作!</p>
+                <button id="submitInfo" type="button" class="btn btn-default" data-dismiss="modal">确定修改</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">取消</button>
+            </div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="alterPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="h4Center">设置新密码</h4>
+			</div>
+			<div class="modal-body">
+                <form id="setPassword">
+                    <h4>旧&nbsp;&nbsp;&nbsp;密码: <input type="text" name="old"></h4>
+                    <h4>新&nbsp;&nbsp;&nbsp;密码: <input type="text" name="new"></h4>
+                    <h4>确定密码: <input type="text" name="confirm"></h4>
+                </form>
+			</div>
+            <div class="modal-footer" style="text-align: center">
+                <button id="submitPassword" type="button" class="btn btn-default" data-dismiss="modal">确定修改</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">取消</button>
+            </div>
+		</div>
+	</div>
+</div>
+<script type="application/javascript">
+    window.MaxElement=null;
+    items=$('.thumbnail');
+    totalSize=0;
+    items.each(function (i,e) {
+        if(parseInt(this.offsetHeight)>totalSize){
+            window.totalSize=parseInt(this.offsetHeight);
+            window.MaxElement=this
+        }
+    });
+    function syncDivSize() {
+        items.each(function (index,element) {
+            if(this==window.MaxElement){
+                return;
+            }
+            element.style.height=window.MaxElement.offsetHeight+'px';
+        });
+    }
+    window.onresize=syncDivSize;
+    syncDivSize();
+</script>
+</body>
+</html>

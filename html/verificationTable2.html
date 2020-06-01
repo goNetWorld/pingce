@@ -1,0 +1,571 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>参评人员科研水平业绩计分表</title>
+<link rel="stylesheet" href="../static/css/bootstrap.css">
+<script type="text/javascript" src="../static/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../static/js/Util.js"></script>
+<script type="text/javascript" src="../static/js/modal.js"></script>
+
+
+<style type="text/css">
+	body {margin:0; padding:20px; font-family: 'Average Sans', sans-serif; font-size:16px; font-weight:normal; line-height:1.5; background:whitesmoke; color:#000000;}
+	a, a:link, a:visited {color:#000000;text-decoration: none;border-bottom:1px dashed #3F6558;-webkit-transition:border-color 0.3s ease-in;}
+	a:hover, a:focus {border-bottom:1px dashed #fff;}
+	h1, h2, h3, p {text-align:center;}
+	h1, h2, h3 {padding: 0 0.1em;}
+	h1[data-scrollable] { line-height: 1.85; }
+	.heading {margin-top:0.25em;font-family:'Pacifico', sans-serif; text-shadow:0.1em 0.1em 2px #3F6558;}
+	.subheading {font-weight:normal;}
+	.button {margin:2em 0;}
+	.button a {background:#3F6558;padding:0.4em 1em;border:none;border-radius:10px;}
+	.clearfix {clear:both;}
+	.space {margin:5em 0;}
+
+
+	table {
+		border: 1px solid #3F6558;
+		margin-bottom: 20px;
+	}
+	th, td {
+		border: 1px solid #000000;
+		padding: 0 10px;
+		text-align: center;
+	}
+	tbody th, tbody td {
+	border: 1px solid black;
+	}
+	*{
+		text-align: center;
+	}
+	td{
+		font-weight: 500;
+	}
+	th,td{
+		font-size: 20px;
+	}
+	p{
+		text-align: left;
+	}
+	body{
+		background: white;
+	}
+	.userInput{
+		border-radius: 0px;
+		border: 0px;
+		border-bottom: 1px solid black;
+		line-height: 20px;
+		text-align: left;
+		bottom: 5px;
+		position: relative;
+		background: white;
+	}
+	.sign{
+		width: 50%;
+		float: left;
+		text-align: left;
+		margin-bottom: 10px;
+	}
+	td,.sign {
+		font-size: 15px;
+	}
+	input:focus{
+		border: 0;
+	}
+	input:active{
+		border: 0;
+	}
+	#images>.imgItems>img{
+		height: 40px;
+		width: 40px;
+		line-height: 40px;
+	}
+	#images>.imgItems{
+		float: left;
+		margin: 3px;
+	}
+	#appendImg,#appendItem{
+		height: 35px;
+		width: 35px;
+		font-size: 35px;
+		margin-left: 8px;
+		margin-top: 2px;
+	}
+	#uploadBar{
+		visibility: visible;
+		height: 20px;
+		margin: -10px 0px;
+	}
+	select{
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+	}
+	.iptItems{
+		margin: 6px 0px;
+		position: relative;
+	}
+	.iptItems>input{
+		text-align: left;
+	}
+	.iptItems>img{
+		height: 40px;
+		width: 40px;
+		margin-top: -5px;
+	}
+	.iptItems>input{
+		text-align: center;
+	}
+	.glyphicon-edit{
+		font-size: 24px;
+		margin: 3px 0px;
+	}
+	.userUploadImage{
+		height: 40px;
+		width: 40px;
+		text-align: left;
+	}
+	.row{
+		text-align: left;
+	}
+	td>p{
+		text-align: center;
+		word-wrap: break-word;
+		word-break: break-all;
+		overflow: hidden;
+		padding: 1px;
+	}
+	.innerImg{
+		height: 80px;
+		width: 80px;
+		border-radius: 10px;
+	}
+</style>
+
+</head>
+<body>
+<div class="row" style="border-bottom: solid 1px antiquewhite;">
+	<div class="col-md-4">工号:2018200962</div>
+	<div class="col-md-4">
+		<div class="progress">
+			<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+				填写:参评人员科研水平业绩计分表
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4" style="top: -8px;">
+		<img src="../static/images/defuser.png" alt="" style="height: 40px;width: 40px">
+		妖孽只在夜里哭
+	</div>
+</div>
+<h1>参评人员科研水平业绩计分表</h1>
+<div style="width: 80%;margin: auto">
+	<div class="sign">
+		<span>申报人姓名:</span>
+		<input class="userInput" type="text" name="realName">
+	</div>
+	<div class="sign signRight">
+		<span>所在单位:</span>
+		<input  class="userInput" type="text" name="company">
+	</div>
+	<table class="responsive" data-min="11" data-max="30" cellpadding="0" cellspacing="0" style="width: 100%;margin: auto">
+		<thead>
+		<tr>
+			<th valign="middle" colspan="2">类别</th>
+			<th valign="middle">计分</th>
+			<th valign="middle">说明(计分详情依据)</th>
+			<th valign="middle">实分</th>
+			<th valign="middle">备注信息</th>
+			<th valign="middle">审核状态</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td valign="middle" colspan="2">基本条件</td>
+			<td valign="middle" id="score1">
+
+			</td>
+			<td valign="middle">
+				合格(<input type="radio" name="qualify" checked disabled/>)
+				不合格(<input type="radio" onclick=this.checked=false; name="qualify" disabled value="0"/>)
+			</td>
+			<td valign="middle" >
+				<p class="collectOneData"></p>
+			</td>
+			<td valign="middle" >
+				<p class="collectOneData"></p>
+			</td>
+			<td valign="middle" class="verificationItem" rowspan="1">
+				<span class="glyphicon glyphicon-ok" aria-hidden="true" index="0"></span>
+				<span class="glyphicon glyphicon-remove" aria-hidden="true" index="1"></span>
+			</td>
+		</tr>
+		<tr>
+			<td valign="middle" rowspan="2">科研项目</td>
+			<td valign="middle">立项分数</td>
+			<td valign="middle" id="score2">
+				{{setProject.get('userScore','')}}
+			</td>
+			<td valign="middle">
+    			{% for i in range(len(setProject['setProject'])) %}
+					{{setProject['setProject'][i].get('title','')}}
+					{{setProject['setProject'][i].get('startDate','')}}
+					{{setProject['setProject'][i].get('score','')}}
+					{{setProject['setProject'][i].get('type','')}}
+					{{setProject['setProject'][i].get('count','')}}
+					{{setProject['setProject'][i].get('rank','')}}
+					{% for n in range(len(setProject['setProject'][i]['files'])) %}
+					<img class="innerImg" onclick="showImage(this)" src="{{setProject['setProject'][i]['files'][n]}}" href="{{setProject['setProject'][i]['files'][n]}}" alt="">
+					{%end%}
+				<br>
+				{%end%}
+			</td>
+			<td valign="middle" >
+				<p class="collectTwoData"></p>
+			</td>
+			<td valign="middle" >
+				<p class="collectTwoData"></p>
+			</td>
+			<td valign="middle" class="verificationItem" rowspan="1">
+				<span class="glyphicon glyphicon-ok" aria-hidden="true" index="0"></span>
+				<span class="glyphicon glyphicon-remove" aria-hidden="true" index="1"></span>
+			</td>
+		</tr>
+		<tr>
+			<td valign="middle">结题分值</td>
+			<td valign="middle" id="score3">
+				{{conclude.get('userScore','')}}
+			</td>
+			<td valign="middle">
+    			{% for i in range(len(conclude['conclude'])) %}
+					{{conclude['conclude'][i].get('title','')}}
+					{{conclude['conclude'][i].get('startDate','')}}
+					{{conclude['conclude'][i].get('score','')}}
+					{{conclude['conclude'][i].get('type','')}}
+					{{conclude['conclude'][i].get('count','')}}
+					{{conclude['conclude'][i].get('rank','')}}
+					{% for n in range(len(conclude['conclude'][i]['files'])) %}
+					<img class="innerImg" onclick="showImage(this)" src="{{conclude['conclude'][i]['files'][n]}}" href="{{conclude['conclude'][i]['files'][n]}}" alt="">
+					{%end%}
+				<br>
+				{%end%}
+			</td>
+			<td valign="middle" >
+				<p class="collectTwoData"></p>
+			</td>
+			<td valign="middle" >
+				<p class="collectThreeData"></p>
+			</td>
+			<td valign="middle" class="verificationItem" rowspan="1">
+				<span class="glyphicon glyphicon-ok" aria-hidden="true" index="0"></span>
+				<span class="glyphicon glyphicon-remove" aria-hidden="true" index="1"></span>
+			</td>
+		</tr>
+		<tr>
+			<td valign="middle" rowspan="3">科技成果</td>
+			<td valign="middle">科技成果奖励及鉴定科研分值</td>
+			<td valign="middle" id="score4">
+				{{results.get('userScore','')}}
+			</td>
+			<td valign="middle">
+    			{% for i in range(len(results['achievement'])) %}
+					{{results['achievement'][i].get('title','')}}
+					{{results['achievement'][i].get('level','')}}
+					{{results['achievement'][i].get('grade','')}}
+					{{results['achievement'][i].get('score','')}}
+					{{results['achievement'][i].get('date','')}}
+					{{results['achievement'][i].get('type','')}}
+					{{results['achievement'][i].get('count','')}}
+					{{results['achievement'][i].get('rank','')}}
+					{% for n in range(len(results['achievement'][i]['files'])) %}
+						<img class="innerImg" onclick="showImage(this)" src="{{results['achievement'][i]['files'][n]}}" href="{{results['achievement'][i]['files'][n]}}" alt="">
+					{%end%}
+				<br>
+				{%end%}
+			</td>
+			<td valign="middle" >
+				<p class="collectThreeData"></p>
+			</td>
+			<td valign="middle" >
+				<p class="collectThreeData"></p>
+			</td>
+			<td valign="middle" class="verificationItem" rowspan="1">
+				<span class="glyphicon glyphicon-ok" aria-hidden="true" index="0"></span>
+				<span class="glyphicon glyphicon-remove" aria-hidden="true" index="1"></span>
+			</td>
+		</tr>
+		<tr>
+			<td valign="middle" style="width: 11em;">
+				著作、艺术作品、论文(含收录或转载)、其他知识产权分值
+			</td>
+			<td valign="middle" id="score5">
+				{{artistic.get('userScore','')}}
+			</td>
+			<td valign="middle">
+				<h4>艺术作品</h4>
+    			{% for i in range(len(artistic['artistic'])) %}
+					{{artistic['artistic'][i].get('title','')}}
+					{{artistic['artistic'][i].get('level','')}}
+					{{artistic['artistic'][i].get('publishDate','')}}
+					{{artistic['artistic'][i].get('shoulu','')}}
+					{{artistic['artistic'][i].get('score','')}}
+					{{artistic['artistic'][i].get('count','')}}
+					{{artistic['artistic'][i].get('rank','')}}
+					{% for n in range(len(artistic['artistic'][i]['files'])) %}
+					<img class="innerImg" onclick="showImage(this)" src="{{artistic['artistic'][i]['files'][n]}}" href="{{artistic['artistic'][i]['files'][n]}}" alt="">
+					{%end%}
+				<br>
+				{%end%}
+				<h4>专业学术著作</h4>
+    			{% for i in range(len(artistic['profess'])) %}
+					{{artistic['profess'][i].get('title','')}}
+					{{artistic['profess'][i].get('publicName','')}}
+					{{artistic['profess'][i].get('publishDate','')}}
+					{{artistic['profess'][i].get('wordsNum','')}}
+					{{artistic['profess'][i].get('score','')}}
+					{{artistic['profess'][i].get('count','')}}
+					{{artistic['profess'][i].get('rank','')}}
+					{{artistic['profess'][i].get('grade','')}}
+					{% for n in range(len(artistic['profess'][i]['files'])) %}
+					<img class="innerImg" onclick="showImage(this)" src="{{artistic['profess'][i]['files'][n]}}" href="{{artistic['profess'][i]['files'][n]}}" alt="">
+					{%end%}
+				<br>
+				{%end%}
+				<h4>编著/译著</h4>
+    			{% for i in range(len(artistic['compile'])) %}
+					{{artistic['compile'][i].get('title','')}}
+					{{artistic['compile'][i].get('publicName','')}}
+					{{artistic['compile'][i].get('publishDate','')}}
+					{{artistic['compile'][i].get('wordsNum','')}}
+					{{artistic['compile'][i].get('score','')}}
+					{{artistic['compile'][i].get('count','')}}
+					{{artistic['compile'][i].get('rank','')}}
+					{{artistic['compile'][i].get('grade','')}}
+					{% for n in range(len(artistic['compile'][i]['files'])) %}
+					<img class="innerImg" onclick="showImage(this)" src="{{artistic['compile'][i]['files'][n]}}" href="{{artistic['compile'][i]['files'][n]}}" alt="">
+					{%end%}
+				<br>
+				{%end%}
+				<h4>论文</h4>
+    			{% for i in range(len(artistic['thesis'])) %}
+					{{artistic['thesis'][i].get('title','')}}
+					{{artistic['thesis'][i].get('qikanName','')}}
+					{{artistic['thesis'][i].get('publishDate','')}}
+					{{artistic['thesis'][i].get('shoulu','')}}
+					{{artistic['thesis'][i].get('score','')}}
+					{{artistic['thesis'][i].get('count','')}}
+					{{artistic['thesis'][i].get('rank','')}}
+					{% for n in range(len(artistic['thesis'][i]['files'])) %}
+					<img class="innerImg" onclick="showImage(this)" src="{{artistic['thesis'][i]['files'][n]}}" href="{{artistic['thesis'][i]['files'][n]}}" alt="">
+					{%end%}
+				<br>
+				{%end%}
+				<h4>创新/创业获奖</h4>
+    			{% for i in range(len(artistic['intellect'])) %}
+					{{artistic['intellect'][i].get('title','')}}
+					{{artistic['intellect'][i].get('date','')}}
+					{{artistic['intellect'][i].get('score','')}}
+					{{artistic['intellect'][i].get('ip','')}}
+					{{artistic['intellect'][i].get('count','')}}
+					{{artistic['intellect'][i].get('rank','')}}
+					{% for n in range(len(artistic['intellect'][i]['files'])) %}
+					<img class="innerImg" onclick="showImage(this)" src="{{artistic['intellect'][i]['files'][n]}}" href="{{artistic['intellect'][i]['files'][n]}}" alt="">
+					{%end%}
+				<br>
+				{%end%}
+			</td>
+			<td valign="middle" >
+				<p class="collectThreeData"></p>
+			</td>
+			<td valign="middle" >
+				<p class="collectThreeData"></p>
+			</td>
+			<td valign="middle" class="verificationItem" rowspan="1">
+				<span class="glyphicon glyphicon-ok" aria-hidden="true" index="0"></span>
+				<span class="glyphicon glyphicon-remove" aria-hidden="true" index="1"></span>
+			</td>
+		</tr>
+		<tr>
+			<td valign="middle">科技成果转化分值</td>
+			<td valign="middle" id="score6">
+				{{transform.get('userScore','')}}
+			</td>
+			<td valign="middle">
+				<h4>科技成果转化</h4>
+    			{% for i in range(len(transform['transform'])) %}
+					{{transform['transform'][i].get('title','')}}
+					{{transform['transform'][i].get('date','')}}
+					{{transform['transform'][i].get('behalf','')}}
+					{{transform['transform'][i].get('score','')}}
+					{{transform['transform'][i].get('method','')}}
+					{{transform['transform'][i].get('category','')}}
+					{{transform['transform'][i].get('count','')}}
+					{{transform['transform'][i].get('rank','')}}
+					{% for n in range(len(transform['transform'][i]['files'])) %}
+					<img class="innerImg" onclick="showImage(this)" src="{{transform['transform'][i]['files'][n]}}" href="{{transform['transform'][i]['files'][n]}}" alt="">
+					{%end%}
+				<br>
+				{%end%}
+			</td>
+			<td valign="middle" >
+				<p class="collectThreeData"></p>
+			</td>
+			<td valign="middle" >
+				<p class="collectThreeData"></p>
+			</td>
+			<td valign="middle" class="verificationItem" rowspan="1">
+				<span class="glyphicon glyphicon-ok" aria-hidden="true" index="0"></span>
+				<span class="glyphicon glyphicon-remove" aria-hidden="true" index="1"></span>
+			</td>
+		</tr>
+		<tr>
+			<td valign="middle" rowspan="2">其他</td>
+			<td valign="middle">特派员分值</td>
+			<td valign="middle" id="score7">
+				{{other.get('userScore','')}}
+			</td>
+			<td valign="middle">
+				<h4>特派员</h4>
+    			{% for i in range(len(other['special'])) %}
+					{{other['special'][i].get('startDate','')}}
+					{{other['special'][i].get('endDate','')}}
+					{{other['special'][i].get('location','')}}
+					{{other['special'][i].get('score','')}}
+					{{other['special'][i].get('beginDate','')}}
+					{{other['special'][i].get('department','')}}
+					{% for n in range(len(other['special'][i]['files'])) %}
+					<img class="innerImg" onclick="showImage(this)" src="{{other['special'][i]['files'][n]}}" href="{{other['special'][i]['files'][n]}}" alt="">
+					{%end%}
+				<br>
+				{%end%}
+			</td>
+			<td valign="middle" >
+				<p class="collectFiveData"></p>
+			</td>
+			<td valign="middle" >
+				<p class="collectFiveData"></p>
+			</td>
+			<td valign="middle" class="verificationItem" rowspan="1">
+				<span class="glyphicon glyphicon-ok" aria-hidden="true" index="0"></span>
+				<span class="glyphicon glyphicon-remove" aria-hidden="true" index="1"></span>
+			</td>
+		</tr>
+		<tr>
+			<td valign="middle">"三区人才"分值</td>
+			<td valign="middle" id="score8">
+				{{other.get('zeroScore','')}}
+			</td>
+			<td valign="middle">
+				<h4>三区人才</h4>
+    			{% for i in range(len(other['zero3'])) %}
+					{{other['zero3'][i].get('startDate','')}}
+					{{other['zero3'][i].get('endDate','')}}
+					{{other['zero3'][i].get('location','')}}
+					{{other['zero3'][i].get('score','')}}
+					{{other['zero3'][i].get('beginDate','')}}
+					{{other['zero3'][i].get('department','')}}
+					{% for n in range(len(other['zero3'][i]['files'])) %}
+					<img class="innerImg" onclick="showImage(this)" src="{{other['zero3'][i]['files'][n]}}" href="{{other['zero3'][i]['files'][n]}}" alt="">
+					{%end%}
+				<br>
+				{%end%}
+			</td>
+			<td valign="middle" >
+				<p class="collectFiveData"></p>
+			</td>
+			<td valign="middle" >
+				<p class="collectFiveData"></p>
+			</td>
+			<td valign="middle" class="verificationItem" rowspan="1">
+				<span class="glyphicon glyphicon-ok" aria-hidden="true" index="0"></span>
+				<span class="glyphicon glyphicon-remove" aria-hidden="true" index="1"></span>
+			</td>
+		</tr>
+		<tr>
+			<td valign="middle"></td>
+			<td valign="middle">总分</td>
+			<td valign="middle" id="score9"></td>
+			<td valign="middle"></td>
+			<td valign="middle" >
+				<p></p>
+			</td>
+			<td valign="middle" >
+				<p></p>
+			</td>
+			<td></td>
+		</tr>
+		</tbody>
+	</table>
+	<p>注:申报人必须如实填写,弄虚作假者取消参评资格。</p>
+	<div class="manageSign1 sign">
+		<span>审核人(签名):</span>
+		<input class="userInput" type="text" name="realName">
+	</div>
+	<div  class="manageSign2 sign signRight">
+		<span>审核人(签名):</span>
+		<input  class="userInput" type="text" name="company">
+	</div>
+	<div style="clear: left;height: 10px"></div>
+	<div  class="departmentSign sign">
+		<span>所在学院或部门(盖章):</span>
+		<input class="userInput" type="text" name="realName" style="width: 6em">
+	</div>
+	<div class="technologyDepartmentSign sign signRight">
+		<span >科技部门(盖章):</span>
+		<input  class="userInput" type="text" name="company">
+	</div>
+</div>
+<!--<a href="#graduationInfo" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#graduationInfo">-->
+	<!--弹出信息-->
+<!--</a>-->
+
+<button id="tips" style="position: absolute;;z-index: 9999;top: 10%;color: white;border-radius: 5px;background:red ;display: none;font-weight: 400">
+
+</button>
+<br><br>
+<p style="text-align: center;">
+	<a href="./admin/index" type="button" class="btn btn-primary btn-lg">
+		完成
+	</a>
+</p>
+<!-- Modal -->
+<input id="uploadFile" type="file" name="uploadImage" style="visibility: hidden;"/>
+</body>
+<script type="application/javascript">
+    function priviate(num) {
+        if(num==undefined){
+            return
+        }
+        switch (num){
+            case 0:{
+                edit('collectOneData');
+                break
+            }
+            case 1:{
+                edit('collectTwoData');
+                break
+            }
+            case 2:{
+                edit('collectThreeData');
+                break
+            }
+            case 3:{
+                edit('collectFourData');
+                break
+            }
+            case 4:{
+                edit('collectFiveData');
+                break
+            }
+        }
+    }
+    function edit(s) {
+        $('.'+s).each(function () {
+            this.setAttribute("contenteditable","true");
+        });
+    };
+</script>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>参评人员科研水平业绩计分表</title>
+<link rel="stylesheet" href="jquery-responsive-tables.css" />
+<link rel="stylesheet" href="../static/css/bootstrap.css">
+<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="jquery-responsiveTables.js"></script>
+<script type="text/javascript" src="jquery.responsiveText.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('table.responsive').responsiveTables();
+});
+</script>
+
+
+<style type="text/css">
+	body {margin:0; padding:20px; font-family: 'Average Sans', sans-serif; font-size:16px; font-weight:normal; line-height:1.5; background:whitesmoke; color:#000000;}
+	a, a:link, a:visited {color:#fff;text-decoration: none;border-bottom:1px dashed #3F6558;-webkit-transition:border-color 0.3s ease-in;}
+	a:hover, a:focus {border-bottom:1px dashed #fff;}
+	h1, h2, h3, p {text-align:center;}
+	h1, h2, h3 {padding: 0 0.1em;}
+	h1[data-scrollable] { line-height: 1.85; }
+	.heading {margin-top:0.25em;font-family:'Pacifico', sans-serif; text-shadow:0.1em 0.1em 2px #3F6558;}
+	.subheading {font-weight:normal;}
+	.button {margin:2em 0;}
+	.button a {background:#3F6558;padding:0.4em 1em;border:none;border-radius:10px;}
+	.clearfix {clear:both;}
+	.space {margin:5em 0;}
+
+
+	table {
+		border: 1px solid #3F6558;
+		margin-bottom: 20px;
+	}
+	th, td {
+		border: 1px solid #000000;
+		padding: 0 10px;
+	}
+	tbody th, tbody td {
+	border: 1px solid black;
+	}
+	*{
+		text-align: center;
+	}
+	td{
+		font-weight: 500;
+	}
+	th,td{
+		font-size: 20px;
+	}
+	p{
+		text-align: left;
+	}
+	body{
+		background: white;
+	}
+	.userInput{
+		border-radius: 0px;
+		border: 0px;
+		border-bottom: 1px solid black;
+		line-height: 20px;
+		text-align: left;
+		bottom: 5px;
+		position: relative;
+		background: white;
+	}
+	.sign{
+		width: 50%;
+		float: left;
+		text-align: left;
+		margin-bottom: 10px;
+	}
+	td,.sign {
+		font-size: 15px;
+	}
+	input:focus{
+		border: 0;
+	}
+	input:active{
+		border: 0;
+	}
+</style>
+
+</head>
+<body>
+<div class="row" style="border-bottom: solid 1px antiquewhite;">
+	<div class="col-md-4">工号:2018200962</div>
+	<div class="col-md-4">
+		<div class="progress">
+			<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+				填写:参评人员科研水平业绩计分表
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4" style="top: -8px;">
+		<img src="../static/images/defuser.png" alt="" style="height: 40px;width: 40px">
+		妖孽只在夜里哭
+	</div>
+</div>
+<h1>参评人员科研水平业绩计分表</h1>
+<div style="width: 80%;margin: auto">
+	<div class="sign">
+		<span>申报人姓名:</span>
+		<input class="userInput" type="text" name="realName">
+	</div>
+	<div class="sign signRight">
+		<span>所在单位:</span>
+		<input  class="userInput" type="text" name="company">
+	</div>
+	<table class="responsive" data-min="11" data-max="30" cellpadding="0" cellspacing="0" style="width: 100%;margin: auto">
+		<thead>
+		<tr>
+			<th valign="middle" colspan="2">类别</th>
+			<th valign="middle">计分</th>
+			<th valign="middle">说明(计分详情依据)</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td valign="middle" colspan="2">基本条件</td>
+			<td valign="middle"></td>
+			<td valign="middle">
+				合格(<input type="radio" name="qualify" value="1"/>)
+				不合格(<input type="radio" name="qualify" value="0"/>)
+			</td>
+		</tr>
+		<tr>
+			<td valign="middle" rowspan="2">科研项目</td>
+			<td valign="middle">立项分数</td>
+			<td valign="middle"></td>
+			<td valign="middle"></td>
+		</tr>
+		<tr>
+			<td valign="middle">结题分值</td>
+			<td valign="middle"></td>
+			<td valign="middle"></td>
+		</tr>
+		<tr>
+			<td valign="middle" rowspan="3">科技成果</td>
+			<td valign="middle">科技成果奖励及鉴定科研分值</td>
+			<td valign="middle"></td>
+			<td valign="middle"></td>
+		</tr>
+		<tr>
+			<td valign="middle" style="width: 11em;">
+				著作、艺术作品、论文(含收录或转载)、其他知识产权分值
+			</td>
+			<td valign="middle"></td>
+			<td valign="middle"></td>
+		</tr>
+		<tr>
+			<td valign="middle">科技成果转化分值</td>
+			<td valign="middle"></td>
+			<td valign="middle"></td>
+		</tr>
+		<tr>
+			<td valign="middle" rowspan="2">其他</td>
+			<td valign="middle">特派员分值</td>
+			<td valign="middle"></td>
+			<td valign="middle"></td>
+		</tr>
+		<tr>
+			<td valign="middle">"三区人才"分值</td>
+			<td valign="middle"></td>
+			<td valign="middle"></td>
+		</tr>
+		<tr>
+			<td valign="middle"></td>
+			<td valign="middle">总分</td>
+			<td valign="middle"></td>
+			<td valign="middle"></td>
+		</tr>
+		</tbody>
+	</table>
+	<p>注:申报人必须如实填写,弄虚作假者取消参评资格。</p>
+	<div class="manageSign1 sign">
+		<span>审核人(签名):</span>
+		<input class="userInput" type="text" name="realName">
+	</div>
+	<div  class="manageSign2 sign signRight">
+		<span>审核人(签名):</span>
+		<input  class="userInput" type="text" name="company">
+	</div>
+	<div style="clear: left;height: 10px"></div>
+	<div  class="departmentSign sign">
+		<span>所在学院或部门(盖章):</span>
+		<input class="userInput" type="text" name="realName" style="width: 6em">
+	</div>
+	<div class="technologyDepartmentSign sign signRight">
+		<span >科技部门(盖章):</span>
+		<input  class="userInput" type="text" name="company">
+	</div>
+</div>
+<a href="verificationTable1.html" type="button" class="btn btn-primary btn-lg">
+	下一步
+</a>
+</body>
+</html>

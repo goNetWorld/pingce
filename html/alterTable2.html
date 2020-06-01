@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <script type="text/javascript" src="../static/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../static/js/Util.js"></script>
+    <script type="text/javascript" src="../static/js/modal.js"></script>
+    <script type="text/javascript" src="../static/js/JqueryMedia.js"></script>
+    <title>参评人员科研水平、业绩计分表</title>
+    <style type="text/css">
+        input{
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+        select{
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+        a{
+            text-decoration: none;
+        }
+        a:active{
+            color: #ffffff;
+        }
+        *{
+            color: #000;
+        }
+        .appendItem{
+            text-align: center;
+            height: 40px;
+            width: 40px;
+        }
+        .deleteItem{
+            text-align: center;
+            height: 40px;
+            width: 40px;
+        }
+        body{
+            width: 80%;
+            margin: auto;
+        }
+        .items{
+            border: 1px black solid;
+            border-radius: 5px;
+            margin: 4px;
+            padding-left: 0.5em;
+            padding: 0.5em 0px;
+        }
+        .contentBody{
+            border:dashed red 1px;
+            padding: 8px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+        .headLine{
+            text-align: center;
+            margin: 3px 0px;
+        }
+        hr{
+            height: 2px;
+            size: 2px;
+            noshade:true;
+            margin: 2px;
+            padding: 0px;
+        }
+        .items>div{
+            margin: 5px;
+            padding: 4px 0px;
+        }
+        .valueCls{
+            width: 4em;
+            position: relative;
+            top: 5px;
+        }
+        .nameCls{
+            width:9em ;
+            position: relative;
+        }
+        .items div{
+        }
+        .checkboxItem{
+            margin: 0px 20px;
+            background: navajowhite;
+            border-radius: 3px;
+        }
+        .glyphicon{
+            top: -20px;
+            left: -40px;
+            position:relative;
+            font-size: 20px;
+            color: red;
+        }
+        .items{
+            padding: 0.2em 0.5em;
+        }
+        .userImg{
+            height: 80px;
+            width: 80px;
+        }
+        .addAttach{
+            height: 60px;
+            width: 60px;
+        }
+        .userUploadImage{
+            height: 80px;
+            width: 80px;
+        }
+    </style>
+</head>
+    <body>
+
+<div class="row" style="border-bottom: solid 1px antiquewhite;padding-top: 10px">
+    <div class="col-md-4">工号:2018200962</div>
+    <div class="col-md-4">
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+                填写:参评人员教学工作综合测评计分表
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4" style="top: -8px;">
+        <img src="../images/defuser.png" alt="" style="height: 40px;width: 40px">
+        妖孽只在夜里哭
+    </div>
+</div>
+<div class="headLine">
+    <h4>科研立项项目</h4>
+    总分值: <input type="number" id="oneTotal" value="{{setProject.get('userScore','')}}" disabled><br><br>
+</div>
+<div class="contentBody">
+    {%for i in range(len(setProject.get('setProject','')))%}
+    <div itemId="0" class="items oneItem1">
+        项目名称:<input type="text" class="ipt" value="{{setProject.get('setProject','')[i].get('title')}}">
+        <select name="naturalType" v="{{setProject.get('setProject','')[i].get('type')}}">
+            <option selected="selected" value="项目类别">项目类别</option>
+            <option value="国家级重大项目">国家级重大项目</option>
+            <option value="国家级重点项目">国家级重点项目</option>
+            <option value="国家级一般(青年)项目">国家级一般(青年)项目</option>
+            <option value="省、部级重大项目">省、部级重大项目</option>
+            <option value="省、部级重点项目">省、部级重点项目</option>
+            <option value="省、部级一般(青年)项目">省、部级一般(青年)项目</option>
+            <option value="地（市）、厅级重点项目">地（市）、厅级重点项目</option>
+            <option value="地（市）、厅级青年项目">地（市）、厅级青年项目</option>
+            <option  value="其他地（市）、厅级纵向项目">其他地（市）、厅级纵向项目</option>
+            <option pointValue="1" value="横向项目" >横向项目</option>
+        </select>
+        立项时间:<input type="text" value="{{setProject.get('setProject','')[i].get('startDate')}}" class="ipt" placeholder="例如:2018-12-13" id="dateItem" style="width:auto">
+        <select style="width: 6em" v="{{setProject.get('setProject','')[i].get('count')}}">
+            <option selected="selected" value="团队人数">团队人数</option>
+            <option value="二人团队">二人团队</option>
+            <option value="三人团队">三人团队</option>
+            <option value="四人团队">四人团队</option>
+            <option value="五人及以上">五人及以上</option>
+        </select>
+        <select style="width: 6em" v="{{setProject.get('setProject','')[i].get('rank')}}">
+            <option selected="selected" value="排名">排名</option>
+            <option value="第一名">第一名</option>
+            <option value="第二名">第二名</option>
+            <option value="第三名">第三名</option>
+            <option value="第四名">第四名</option>
+            <option value="第五名">第五名</option>
+            <option value="第六名">第六名</option>
+            <option value="第七名">第七名</option>
+        </select><br>
+        立项分值:<input type="number" value="{{setProject.get('setProject','')[i].get('score')}}" class="valueCls oneValue ipt"  onchange="changeOneTotal(this)">
+        附件:
+        {%if len(setProject['setProject'][i].get('files',''))==0%}
+            <span>
+                <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+                <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+            </span>
+        {%end%}
+        {% for n in range(len(setProject['setProject'][i].get('files',''))) %}
+        <span>
+            <img src="{{setProject['setProject'][i]['files'][n]}}" href="{{setProject['setProject'][i]['files'][n]}}" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+            <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+        </span>
+        {% end %}
+        <img class="addAttach" src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+    </div>
+    {%end%}
+    <img class="appendItem" onclick="appendItem(this)" th:src="@{//images/append.jpg}" src="../static/images/append.jpg" alt="">
+    <img class="deleteItem" onclick="deleteItem(this)" th:src="@{//images/delete.jpg}" src="../static/images/delete.jpg" alt="">
+</div>
+<hr>
+<h4>科研结题项目</h4>
+总分值: <input type="number" id="twoTotal" value="{{conclude.get('userScore','')}}" disabled><br><br>
+<div class="contentBody">
+    {%for i in range(len(conclude.get('conclude','')))%}
+    <div itemId="1" class="items twoItem1">
+        项目名称:<input type="text" value="{{conclude.get('conclude','')[i].get('title')}}" class="ipt">
+        <select v="{{conclude.get('conclude','')[i].get('type')}}">
+            <option selected="selected" value="项目类别">项目类别</option>
+            <option value="国家级重大项目">国家级重大项目</option>
+            <option value="国家级重点项目">国家级重点项目</option>
+            <option value="国家级一般(青年)项目">国家级一般(青年)项目</option>
+            <option value="省、部级重大项目">省、部级重大项目</option>
+            <option value="省、部级重点项目">省、部级重点项目</option>
+            <option value="省、部级一般(青年)项目">省、部级一般(青年)项目</option>
+            <option value="地（市）、厅级重点项目">地（市）、厅级重点项目</option>
+            <option value="地（市）、厅级青年项目">地（市）、厅级青年项目</option>
+            <option  value="其他地（市）、厅级纵向项目">其他地（市）、厅级纵向项目</option>
+            <option pointValue="1" value="横向项目" >横向项目</option>
+        </select>
+        结题时间:<input type="text" value="{{conclude.get('conclude','')[i].get('endDate')}}" class="ipt"  placeholder="例如:2018-12-13" style="width: auto;">
+        <select style="width: 6em"  v="{{conclude.get('conclude','')[i].get('count')}}">
+            <option selected="selected" value="团队人数">团队人数</option>
+            <option value="二人团队">二人团队</option>
+            <option value="三人团队">三人团队</option>
+            <option value="四人团队">四人团队</option>
+            <option value="五人及以上">五人及以上</option>
+        </select>
+        <select style="width: 6em"  v="{{conclude.get('conclude','')[i].get('rank')}}">
+            <option selected="selected" value="排名">排名</option>
+            <option value="第一名">第一名</option>
+            <option value="第二名">第二名</option>
+            <option value="第三名">第三名</option>
+            <option value="第四名">第四名</option>
+            <option value="第五名">第五名</option>
+            <option value="第六名">第六名</option>
+            <option value="第七名">第七名</option>
+        </select><br>
+        结题分值:<input type="number" value="{{conclude.get('conclude','')[i].get('score')}}" class="valueCls twoValue ipt" onchange="changeTwoTotal(this)">
+        附件:
+        {%if len(conclude['conclude'][i].get('files',''))==0%}
+            <span>
+                <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+                <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+            </span>
+        {%end%}
+        {% for n in range(len(conclude['conclude'][i].get('files',''))) %}
+        <span>
+            <img src="{{conclude['conclude'][i]['files'][n]}}" href="{{conclude['conclude'][i]['files'][n]}}" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+            <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+        </span>
+        {% end %}
+        <img class="addAttach" src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+    </div>
+    {%end%}
+    <img class="appendItem" onclick="appendItem(this)" th:src="@{//images/append.jpg}" src="../static/images/append.jpg" alt="">
+    <img class="deleteItem" onclick="deleteItem(this)" th:src="@{//images/delete.jpg}" src="../static/images/delete.jpg" alt="">
+</div>
+<hr>
+<div class="headLine">
+    <h4>科技成果及成果转化</h4>
+    <section>总分值: <input type="number" id="threeTotal" value="0" disabled><br></section>
+</div>
+<div class="contentBody">
+    {%for i in range(len(results.get('achievement','')))%}
+    <div class="threeItem1 items">
+        科技成果名称: <input type="text"  value="{{results.get('achievement','')[i].get('title','')}}" class="nameCls ipt">
+        <select v="{{results.get('achievement','')[i].get('type','')}}">
+            <option selected="selected" value="0">科技成果类型</option>
+            <option value="1">各级科技成果奖励分值(自然科学类)</option>
+            <option value="2">各级科技成果奖励分值(社会科学类)</option>
+            <option value="3">各级其他科技成果奖励分值(自然科学类)</option>
+            <option value="4">各级成果鉴定分值</option>
+        </select>
+        获奖级别:<input type="text"  value="{{results.get('achievement','')[i].get('level','')}}" class="ipt nameCls" placeholder="如国家级">
+        获奖等级:<input type="text"  value="{{results.get('achievement','')[i].get('grade','')}}" class="ipt nameCls"  placeholder="如一等奖">
+        <select v="{{results.get('achievement','')[i].get('count','')}}">
+            <option selected="selected" value="团队人数">团队人数</option>
+            <option value="二人组">二人组</option>
+            <option value="三人组">三人组</option>
+            <option value="四人组">四人组</option>
+            <option value="五人组">五人组</option>
+            <option value="六人组">六人组</option>
+            <option value="七人及以上">七人及以上</option>
+        </select>
+        <select v="{{results.get('achievement','')[i].get('rank','')}}">
+            <option selected="selected" value="排名">排名</option>
+            <option value="第一名">第一名</option>
+            <option value="第二名">第二名</option>
+            <option value="第三名">第三名</option>
+            <option value="第四名">第四名</option>
+            <option value="第五名">第五名</option>
+            <option value="第六名">第六名</option>
+            <option value="第七名">第七名</option>
+        </select><br>
+        分值: <input type="number" value="{{results.get('achievement','')[i].get('score','')}}" class="valueCls threeValue" onchange="changeThreeTotal(this)">
+        获奖时间: <input type="text"  value="{{results.get('achievement','')[i].get('date','')}}"  placeholder="例如:2018-12-13" class="nameCls ipt">
+        附件信息:
+        {%if len(results['achievement'][i].get('files',''))==0%}
+            <span>
+                <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+                <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+            </span>
+        {%end%}
+        {% for n in range(len(results['achievement'][i].get('files',''))) %}
+        <span>
+            <img src="{{results['achievement'][i]['files'][n]}}" href="{{results['achievement'][i]['files'][n]}}" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+            <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+        </span>
+        {% end %}
+        <img class="addAttach"  src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+    </div>
+    {%end%}
+    <img class="appendItem" onclick="appendItem(this)" src="../static/images/append.jpg" alt="">
+    <img class="deleteItem" onclick="deleteItem(this)" src="../static/images/delete.jpg" alt="">
+</div>
+<br>
+<h4>著作,艺术作品,论文及其他知识产权</h4>
+<section>总分值: <input type="number"  id="fourTotal" value="{{artistic.get('userScore','')}}" disabled><br></section>
+<div class="contentBody">
+    <h4>艺术作品</h4>
+    {%for i in range(len(artistic.get('artistic','')))%}
+<div class="items fourItem1">
+    艺术作品名称: <input type="text" value="{{artistic.get('artistic','')[i].get('title','')}}" class="ipt">
+    作品级别: <input type="text" value="{{artistic.get('artistic','')[i].get('level','')}}" placeholder="" class="ipt">
+    发表时间: <input type="text" value="{{artistic.get('artistic','')[i].get('publishDate','')}}" class="ipt" placeholder="例如:2018-12-13">
+    <select v="{{artistic.get('artistic','')[i].get('count','')}}">
+        <option selected="selected" value="团队人数">团队人数</option>
+        <option value="二人组">二人组</option>
+        <option value="三人组">三人组</option>
+        <option value="四人组">四人组</option>
+        <option value="五人组">五人组</option>
+        <option value="六人组">六人组</option>
+        <option value="七人及以上">七人及以上</option>
+    </select>
+    <select v="{{artistic.get('artistic','')[i].get('rank','')}}">
+        <option selected="selected" value="排名">排名</option>
+        <option value="第一名">第一名</option>
+        <option value="第二名">第二名</option>
+        <option value="第三名">第三名</option>
+        <option value="第四名">第四名</option>
+        <option value="第五名">第五名</option>
+        <option value="第六名">第六名</option>
+        <option value="第七名">第七名</option>
+    </select>
+    <p>
+    <span style="margin: 0px auto;">
+    收录转载情况:</span>
+        <textarea name="" class="ipt" onclick="openDetail(this)" readonly style="width: 80%;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;" rows="5">
+             {{artistic.get('artistic','')[i].get('shoulu','')}}
+        </textarea>
+    </p>
+    分值:<input type="number" value="{{artistic.get('artistic','')[i].get('score','')}}" class="valueCls fourValue ipt" onchange="changeFourTotal(this)">
+    附件:
+        {%if len(artistic['artistic'][i].get('files',''))==0%}
+            <span>
+                <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+                <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+            </span>
+        {%end%}
+        {% for n in range(len(artistic['artistic'][i].get('files',''))) %}
+        <span>
+            <img src="{{artistic['artistic'][i]['files'][n]}}" href="{{artistic['artistic'][i]['files'][n]}}" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+            <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+        </span>
+        {% end %}
+    <img class="addAttach"  src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+</div>
+    {%end%}
+<img class="appendItem" onclick="appendItem(this)" th:src="@{//images/append.jpg}" src="../static/images/append.jpg" alt="">
+<img class="deleteItem" onclick="deleteItem(this)" th:src="@{//images/delete.jpg}" src="../static/images/delete.jpg" alt="">
+<hr>
+<h4>个人著作</h4>
+<div class="items">
+<h4>专业学术著作</h4>
+    {%for i in range(len(artistic.get('profess','')))%}
+<div class="fourItem2 items">
+    著作名称: <input type="text" value="{{artistic.get('profess','')[i].get('title','')}}" class="nameCls ipt">
+    出版社名称: <input type="text" value="{{artistic.get('profess','')[i].get('publicName','')}}" class="nameCls ipt">
+    发表时间: <input type="text" value="{{artistic.get('profess','')[i].get('publishDate','')}}" class="ipt" placeholder="例如:2018-12-13">
+    出版字数:<input type="number" value="{{artistic.get('profess','')[i].get('wordsNum','')}}" class="valueCls ipt">
+    <select v="{{artistic.get('profess','')[i].get('count','')}}">
+        <option selected="selected" value="作者人数">作者人数</option>
+        <option value="一人">一人</option>
+        <option value="两人">两人</option>
+        <option value="三人">三人</option>
+        <option value="四人">四人</option>
+        <option value="五人及以上">五人及以上</option>
+    </select>
+    <select  v="{{artistic.get('profess','')[i].get('rank','')}}">
+        <option selected="selected" value="排名">排名</option>
+        <option value="第一名">第一名</option>
+        <option value="第二名">第二名</option>
+        <option value="第三名">第三名</option>
+        <option value="第四名">第四名</option>
+        <option value="第五名">第五名</option>
+    </select>
+    <select  v="{{artistic.get('profess','')[i].get('grade','')}}">
+        <option selected="selected" value="等级">等级</option>
+        <option value="A类出版社">A类出版社</option>
+        <option value="B类出版社">B类出版社</option>
+    </select>
+    分数:<input type="number" value="{{artistic.get('profess','')[i].get('score','')}}" class="valueClsipt fourValue ipt" onchange="changeFourTotal(this)">
+    附件:
+        {%if len(artistic['profess'][i].get('files',''))==0%}
+            <span>
+                <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+                <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+            </span>
+        {%end%}
+        {% for n in range(len(artistic['profess'][i].get('files',''))) %}
+        <span>
+            <img src="{{artistic['profess'][i]['files'][n]}}" href="{{artistic['profess'][i]['files'][n]}}" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+            <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+        </span>
+        {% end %}
+    <img class="addAttach"  src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+</div>
+    {%end%}
+<img class="appendItem" onclick="appendItem(this)" th:src="@{//images/append.jpg}" src="../static/images/append.jpg" alt="">
+<img class="deleteItem" onclick="deleteItem(this)" th:src="@{//images/delete.jpg}" src="../static/images/delete.jpg" alt="">
+<br>
+<h4>著作(编著/译著)</h4>
+    {%for i in range(len(artistic.get('compile','')))%}
+    <div class="fourItem3 items">
+        著作名称: <input type="text" value="{{artistic.get('compile','')[i].get('title','')}}" class="nameCls ipt">
+        出版社名称: <input type="text" value="{{artistic.get('compile','')[i].get('publicName','')}}" class="nameCls ipt">
+        发表时间: <input type="text" value="{{artistic.get('compile','')[i].get('publicDate','')}}" class="ipt" placeholder="例如:2018-12-13">
+        出版字数:<input type="number" value="{{artistic.get('compile','')[i].get('wordsNum','')}}" class="valueCls ipt">
+        <select v="{{artistic.get('compile','')[i].get('type','')}}">
+            <option selected="selected" value="著作类型">著作类型</option>
+            <option value="编著">编著</option>
+            <option value="译著">译著</option>
+        </select>
+        <select v="{{artistic.get('compile','')[i].get('count','')}}">
+            <option selected="selected" value="作者人数">作者人数</option>
+            <option value="一人">一人</option>
+            <option value="两人">两人</option>
+            <option value="三人">三人</option>
+            <option value="四人">四人</option>
+            <option value="五人及以上">五人及以上</option>
+        </select>
+        <select v="{{artistic.get('compile','')[i].get('rank','')}}">
+            <option selected="selected" value="排名">排名</option>
+            <option value="第一名">第一名</option>
+            <option value="第二名">第二名</option>
+            <option value="第三名">第三名</option>
+            <option value="第四名">第四名</option>
+            <option value="第五名">第五名</option>
+        </select>
+        分数:<input type="number" value="{{artistic.get('compile','')[i].get('score','')}}" class="valueCls ipt fourValue" onchange="changeFourTotal(this)">
+        附件:
+        {%if len(artistic['compile'][i].get('files',''))==0%}
+            <span>
+                <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+                <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+            </span>
+        {%end%}
+        {% for n in range(len(artistic['compile'][i].get('files',''))) %}
+        <span>
+            <img src="{{artistic['compile'][i]['files'][n]}}" href="{{setProject['compile'][i]['files'][n]}}" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+            <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+        </span>
+        {% end %}
+            <img class="addAttach"  src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+    </div>
+    {%end%}
+    <img class="appendItem" onclick="appendItem(this)" src="../static/images/append.jpg" alt="">
+    <img class="deleteItem" onclick="deleteItem(this)" src="../static/images/delete.jpg" alt="">
+</div>
+<br>
+<h4>论文发表信息</h4>
+    {%for i in range(len(artistic.get('thesis','')))%}
+<div class="items fourItem4">
+    论文名称: <input type="text" value="{{artistic.get('thesis','')[i].get('title','')}}" class="nameCls ipt">
+    期刊名称: <input type="text" value="{{artistic.get('thesis','')[i].get('qikanName','')}}" class="nameCls ipt">
+    发表时间: <input type="text" value="{{artistic.get('thesis','')[i].get('publishDate','')}}" class="ipt" placeholder="例如:2018-12-13">
+    <select  v="{{artistic.get('thesis','')[i].get('count','')}}">
+        <option selected="selected" value="作者人数">作者人数</option>
+        <option value="一人">一人</option>
+        <option value="两人">两人</option>
+        <option value="三人">三人</option>
+        <option value="四人">四人</option>
+        <option value="五人及以上">五人及以上</option>
+    </select>
+    <select v="{{artistic.get('thesis','')[i].get('rank','')}}">
+        <option selected="selected" value="排名">排名</option>
+        <option value="第一名">第一名</option>
+        <option value="第二名">第二名</option>
+        <option value="第三名">第三名</option>
+        <option value="第四名">第四名</option>
+        <option value="第五名">第五名</option>
+    </select>
+    <p>
+    <span style="margin: 0px auto;">
+    收录转载情况:</span>
+        <textarea name="" class="ipt" onclick="openDetail(this)" readonly style="width: 80%;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;" rows="5">
+             {{artistic.get('thesis','')[i].get('shoulu','')}}
+        </textarea>
+    </p>
+    <br>
+    分数:<input type="number" value="{{artistic.get('thesis','')[i].get('score','')}}" class="valueCls ipt fourValue" onchange="changeFourTotal(this)">
+    附件:
+        {%if len(artistic['thesis'][i].get('files',''))==0%}
+            <span>
+                <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+                <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+            </span>
+        {%end%}
+        {% for n in range(len(artistic['thesis'][i].get('files',''))) %}
+        <span>
+            <img src="{{artistic['thesis'][i]['files'][n]}}" href="{{artistic['thesis'][i]['files'][n]}}" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+            <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+        </span>
+        {% end %}
+    <img class="addAttach"  src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+</div>
+    {%end%}
+<img class="appendItem" onclick="appendItem(this)" th:src="@{//images/append.jpg}" src="../static/images/append.jpg" alt="">
+<img class="deleteItem" onclick="deleteItem(this)" th:src="@{//images/delete.jpg}" src="../static/images/delete.jpg" alt="">
+<br>
+<h4>其他授权知识产权</h4>
+    {%for i in range(len(artistic.get('intellect','')))%}
+<div class="items fourItem5">
+    专利名称: <input type="text" value="{{artistic.get('intellect','')[i].get('title','')}}" class="nameCls ipt">
+    获取时间: <input type="text" value="{{artistic.get('intellect','')[i].get('date','')}}" class="ipt" placeholder="例如:2018-12-13">
+    <select v="{{artistic.get('intellect','')[i].get('ip')}}">
+        <option selected="selected" value="知识产权类型">知识产权类型</option>
+        <option value="专利">专利</option>
+        <option value="植物新品种">植物新品种</option>
+        <option value="集成电路布图设计">集成电路布图设计</option>
+        <option value="商标和名称专用权">商标和名称专用权</option>
+        <option value="计算机软件著作权">计算机软件著作权</option>
+    </select>
+    <select v="{{artistic.get('intellect','')[i].get('count','')}}">
+        <option selected="selected" value="人数">人数</option>
+        <option value="一人">一人</option>
+        <option value="两人">两人</option>
+        <option value="三人">三人</option>
+        <option value="四人">四人</option>
+        <option value="五人及以上">五人及以上</option>
+    </select>
+    <select v="{{artistic.get('intellect','')[i].get('rank','')}}">
+        <option selected="selected" value="排名">排名</option>
+        <option value="第一名">第一名</option>
+        <option value="第二名">第二名</option>
+        <option value="第三名">第三名</option>
+        <option value="第四名">第四名</option>
+        <option value="第五名">第五名</option>
+    </select>
+    分数:<input type="number" value="{{artistic.get('intellect','')[i].get('score','')}}" class="valueCls ipt fourValue" onchange="changeFourTotal(this)">
+    附件:
+        {%if len(artistic['intellect'][i].get('files',''))==0%}
+            <span>
+                <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+                <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+            </span>
+        {%end%}
+        {% for n in range(len(artistic['intellect'][i].get('files',''))) %}
+        <span>
+            <img src="{{artistic['intellect'][i]['files'][n]}}" href="{{artistic['intellect'][i]['files'][n]}}" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+            <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+        </span>
+        {% end %}
+<img class="addAttach"  src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+</div>
+    {%end%}
+<img class="appendItem" onclick="appendItem(this)" th:src="@{//images/append.jpg}" src="../static/images/append.jpg" alt="">
+<img class="deleteItem" onclick="deleteItem(this)" th:src="@{//images/delete.jpg}" src="../static/images/delete.jpg" alt="">
+</div>
+<h4>科技成果转化分值</h4>
+<section>总分值: <input type="number" id="fiveTotal" value="{{transform.get('userScore','')}}" disabled><br></section>
+    {%for i in range(len(transform.get('transform','')))%}
+<div class="items fiveItem1">
+    转化名称: <input type="text" value="{{transform.get('transform','')[i].get('title','')}}" class="nameCls ipt">
+    <select v="{{transform.get('transform','')[i].get('method','')}}">
+        <option value="转化方式">转化方式</option>
+        <option value="自行投资实施转化">自行投资实施转化</option>
+        <option value="向他人转让科技成果">向他人转让科技成果</option>
+        <option value="许可他人使用科技成果">许可他人使用科技成果</option>
+        <option value="与他人共同实施转化">与他人共同实施转化</option>
+        <option value="作价投资、折算股份或出资比例">作价投资、折算股份或出资比例</option>
+    </select>
+    <select v="{{transform.get('transform','')[i].get('category','')}}">
+        <option value="转化种类">转化种类</option>
+        <option value="实用技术的转让和实施许可">实用技术的转让和实施许可</option>
+        <option value="专利权转让(或其他知识产权)和许可">专利权转让(或其他知识产权)和许可</option>
+        <option value="自行投资或作价入股">自行投资或作价入股</option>
+    </select>
+    转化时间: <input type="text" value="{{transform.get('transform','')[i].get('date','')}}" class="valueCls ipt">
+    转化效益: <input type="text" value="{{transform.get('transform','')[i].get('behalf','')}}" class="valueCls ipt">
+    <select  v="{{transform.get('transform','')[i].get('count','')}}">
+        <option selected="selected" value="团队人数">团队人数</option>
+        <option value="一人">一人</option>
+        <option value="两人">两人</option>
+        <option value="三人">三人</option>
+        <option value="四人">四人</option>
+        <option value="五人及以上">五人及以上</option>
+    </select>
+    <select v="{{transform.get('transform','')[i].get('rank','')}}">
+        <option selected="selected" value="排名">排名</option>
+        <option value="第一名">第一名</option>
+        <option value="第二名">第二名</option>
+        <option value="第三名">第三名</option>
+        <option value="第四名">第四名</option>
+        <option value="第五名">第五名</option>
+    </select>
+    转化分值: <input type="number" value="{{transform.get('transform','')[i].get('score','')}}" class="valueCls ipt fiveValue" onchange="changeFiveTotal(this)">
+    附件:
+        {%if len(transform['transform'][i].get('files',''))==0%}
+            <span>
+                <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+                <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+            </span>
+        {%end%}
+        {% for n in range(len(transform['transform'][i].get('files',''))) %}
+        <span>
+            <img src="{{transform['transform'][i]['files'][n]}}" href="{{transform['transform'][i]['files'][n]}}" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+            <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+        </span>
+        {% end %}
+<img class="addAttach"  src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+</div>
+{%end%}
+<img class="appendItem" onclick="appendItem(this)" th:src="@{//images/append.jpg}" src="../static/images/append.jpg" alt="">
+<img class="deleteItem" onclick="deleteItem(this)" th:src="@{//images/delete.jpg}" src="../static/images/delete.jpg" alt="">
+<br>
+<div class="headLine">
+    <h4>其他</h4>
+    <section>总分值: <input type="number" id="sixTotal" value="{{other.get('userScore','')}}" disabled><br></section>
+</div>
+<div class="contentBody">
+<h4 class="">特派员分值</h4>
+<span id="nextProject"></span>
+    {%for i in range(len(other.get('special','')))%}
+<div itemId="0" class="items sixItem1">
+    起始时间: <input type="text" value="{{other.get('special','')[i].get('startDate','')}}" class="nameCls ipt" placeholder="例如:2018-12-13">
+    截止时间: <input type="text" value="{{other.get('special','')[i].get('endDate','')}}" class="nameCls ipt" placeholder="例如:2018-12-13">
+    <select v="{{other.get('special','')[i].get('department','')}}">
+        <option value="委派单位">委派单位</option>
+        <option value="省委">省委</option>
+        <option value="州委或学校组织委派">州委或学校组织委派</option>
+        <option value="三区人才">三区人才</option>
+    </select>
+    工作地点:<input type="text" value="{{other.get('special','')[i].get('location','')}}" class="nameCls ipt">
+    分数:<input type="number" value="{{other.get('special','')[i].get('score','')}}" class="ipt valueCls sixValue" onchange="changeSixTotal(this)">
+    上岗时间: <input type="text" value="{{other.get('special','')[i].get('beginDate','')}}" class="nameCls ipt" placeholder="例如:2018-12-13">
+    附件:
+        {%if len(other['special'][i].get('files',''))==0%}
+            <span>
+                <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+                <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+            </span>
+        {%end%}
+        {% for n in range(len(other['special'][i].get('files',''))) %}
+        <span>
+            <img src="{{other['special'][i]['files'][n]}}" href="{{other['special'][i]['files'][n]}}" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+            <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+        </span>
+        {% end %}
+        <img class="addAttach"  src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+</div>
+    {%end%}
+<img class="appendItem" onclick="appendItem(this)" src="../static/images/append.jpg" alt="">
+<img class="deleteItem" onclick="deleteItem(this)" src="../static/images/delete.jpg" alt="">
+<hr>
+    <h4 class="">三区人才</h4>
+    {%for i in range(len(other.get('zero3','')))%}
+    <div itemId="0" class="items sixItem2">
+        起始时间: <input type="text" value="{{other.get('zero3','')[i].get('startDate','')}}" class="nameCls ipt" placeholder="例如:2018-12-13">
+        截止时间: <input type="text" value="{{other.get('zero3','')[i].get('endDate','')}}" class="nameCls ipt" placeholder="例如:2018-12-13">
+        <select v="{{other.get('zero3','')[i].get('department')}}">
+            <option value="三区人才" selected>三区人才</option>
+        </select>
+        工作地点:<input type="text" value="{{other.get('zero3','')[i].get('location','')}}" class="nameCls ipt">
+        分数:<input type="number" value="{{other.get('zero3','')[i].get('score','')}}" class="ipt valueCls sixValue" onchange="changeSixTotal(this)">
+        上岗时间: <input type="text" value="{{other.get('zero3','')[i].get('beginDate','')}}" class="nameCls ipt" placeholder="例如:2018-12-13">
+        附件:
+        {%if len(other['zero3'][i].get('files',''))==0%}
+            <span>
+                <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+                <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+            </span>
+        {%end%}
+        {% for n in range(len(other['zero3'][i].get('files',''))) %}
+        <span>
+            <img src="{{other['zero3'][i]['files'][n]}}" href="{{other['zero3'][i]['files'][n]}}" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+            <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+        </span>
+        {% end %}
+        <img class="addAttach"  src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+    </div>
+    {% end %}
+    <img class="appendItem" onclick="appendItem(this)" src="../static/images/append.jpg" alt="">
+    <img class="deleteItem" onclick="deleteItem(this)" src="../static/images/delete.jpg" alt="">
+<hr>
+</div>
+<span id="test" style="display: none;" href="#technologyResultValue" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#technologyResultValue" style="float: right;display: block">
+</span>
+<img src="../static/images/attachment.jpg" style="display: none" id="imgElement">
+<hr>
+<span id="tips" style="position: fixed;;z-index: 9999;top: 10%;color: white;border-radius: 3px;background:red ;display: none;font-weight: 400;font-size: 22px">
+
+</span>
+<div class="modal fade" id="technologyResultValue" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body" id="getBodyInfo">
+                    <p class="checkboxItem">
+                        <input type="checkbox">
+                        <span>
+                            SCIE、SSCI、A&amp;HCI
+                        </span>
+                    </p>
+                    <p class="checkboxItem">
+                        <input type="checkbox">
+                        <span>
+                            EI
+                        </span>
+                    </p>
+                    <p class="checkboxItem">
+                        <input type="checkbox">
+                        <span>
+                            ISTF
+                        </span>
+                    </p>
+                    <p class="checkboxItem">
+                        <input type="checkbox">
+                        <span>
+                            &lt;&lt;新华文摘&gt;&gt;
+                            &lt;&lt;中国社会科学文摘&gt;&gt;
+                            全文转载
+                        </span>
+                    </p>
+                    <p class="checkboxItem">
+                        <input type="checkbox">
+                        <span>
+                            &lt;&lt;中国人民大学复印资料&gt;&gt;
+                            &lt;&lt;高等学校文科学术文摘&gt;&gt;
+                            全文转载
+                        </span>
+                    </p>
+                    <p class="checkboxItem">
+                        <input type="checkbox">
+                        <span>
+                            &lt;&lt;新华文摘&gt;&gt;
+                            &lt;&lt;中国社会科学文摘&gt;&gt;
+                            论点摘编
+                        </span>
+                    </p>
+                    <p class="checkboxItem">
+                        <input type="checkbox">
+                        <span>
+                            &lt;&lt;新华文摘&gt;&gt;
+                            &lt;&lt;中国社会科学文摘&gt;&gt;
+                            论点摘编
+                        </span>
+                    </p>
+                    <p class="checkboxItem">
+                        <input type="checkbox">
+                        <span>
+                            &lt;&lt光明日报&gt;&gt;
+                            摘编
+                        </span>
+                    </p>
+                    <p class="checkboxItem">
+                        <input type="checkbox">
+                        <span>
+                            &lt;&lt;中国人民大学复印资料&gt;&gt;
+                            &lt;&lt;高等学校文科学术文摘&gt;&gt;
+                            论点摘编
+                        </span>
+                    </p>
+            </div>
+            <div class="modal-footer" style="text-align: center">
+                <button id="submitReward" type="button" class="btn btn-default" data-dismiss="modal">提交信息</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="text-align: center;font-size: 30px;margin-top: 10px">
+    <button id="submit" onclick="collectAll()" type="button" style="font-size: 30px;background: lightseagreen;color: white;border-radius: 10px">
+        <a  onclick="">
+            保存数据
+        </a>
+    </button>
+    <button type="button" onclick="gotoNextPage()" style="font-size: 30px;background: lightseagreen;color: white;border-radius: 10px">
+        <a href="index.html" >
+            提交数据
+        </a>
+    </button>
+</div>
+<input type="file" onchange='uploadFiles(this)'  id="fileItem" style="display: none;">
+</body>
+<script type="application/javascript">
+    function collectAll() {
+        var d=new FormData();
+        d.append('setProject',collectOneData());
+        d.append('conclude',collectTwoData());
+        d.append('result',collectThreeData());
+        d.append('artistic',collectFourData());
+        d.append('transform',collectFiveData());
+        d.append('other',collectSixData());
+        $.ajax({
+            type: 'post',
+            url: '/alterTable2',
+            data: d,
+            async:'true',
+            success: function (result) {
+                try {
+                    result=JSON.parse(result);
+                    console.log(result)
+                    if(result.code=="0"){
+
+                    }
+                }catch (e) {
+                    console.log(e);
+                    return
+                }
+            },
+            contentType:false,
+            processData:false,
+        });
+    }
+    function appendItem(t) {
+        newImg=t.previousElementSibling.cloneNode(true);
+        newImg.setAttribute('itemId',(parseInt(newImg.getAttribute('itemId'))+1));
+        one=newImg.firstElementChild;
+        e=newImg.getElementsByTagName("input");
+        for (let i = 0; i <e.length ; i++) {
+            e[i].value='';
+        }
+        n=$(newImg).find("textarea");
+        for (let i = 0; i < n.length; i++) {
+            n[i].value='';
+        }
+        n=$(newImg).children("span");
+        for (let i = 0; i < n.length; i++) {
+            if(i!=0){
+                n[i].parentElement.removeChild(n[i]);
+            }
+        }
+        e=newImg.getElementsByTagName("img");
+        for (let i = 0; i <e.length-1 ; i++) {
+            e[i].src=defaultImage;
+        }
+        t.parentNode.insertBefore(newImg,t);
+    }
+    collectElement='';
+    function openDetail(t) {
+        collectElement=t;
+        r=$("#getBodyInfo").find('p');
+        for (let i = 0; i < r.length; i++) {
+            r[i].firstElementChild.checked="";
+        }
+        $('#test').click();
+
+    }
+    $('#submitReward').bind("click",function () {
+        if(collectElement==''){
+            showTips("获取数据失败,请重试!")
+        }else{
+            r=$("#getBodyInfo").find('p');
+            s='';
+            for (let i = 0; i < r.length; i++) {
+                if(r[i].firstElementChild.checked==""){
+                    continue;
+                }
+                s+=r[i].lastElementChild.innerText+'\n';
+            }
+            collectElement.value=s;
+        }
+    });
+    function changeOneTotal(t) {
+        //将第四个项目进行计分
+        if(t.value.indexOf('e')!=-1){
+            showTips("暂不支持E的科学记数法!");
+            return
+        }
+        oneValue=0;
+        $('.oneValue').each(function () {
+            oneValue+=Number(this.value);
+        });
+        $("#oneTotal").val(oneValue);
+    }
+    function changeTwoTotal(t) {
+        //将第四个项目进行计分
+        if(t.value.indexOf('e')!=-1){
+            showTips("暂不支持E的科学记数法!");
+            return
+        }
+        twoValue=0;
+        $('.twoValue').each(function () {
+            twoValue+=Number(this.value);
+        });
+        $("#twoTotal").val(twoValue);
+    }
+    function changeThreeTotal(t) {
+        //将第四个项目进行计分
+        if(t.value.indexOf('e')!=-1){
+            showTips("暂不支持E的科学记数法!");
+            return
+        }
+        threeValue=0;
+        $('.threeValue').each(function () {
+            threeValue+=Number(this.value);
+        });
+        $("#threeTotal").val(threeValue);
+    }
+    function changeFourTotal(t) {
+        //将第四个项目进行计分
+        if(t.value.indexOf('e')!=-1){
+            showTips("暂不支持E的科学记数法!");
+            return
+        }
+        FourValue=0;
+        $('.fourValue').each(function () {
+            FourValue+=Number(this.value);
+        });
+        $("#fourTotal").val(FourValue);
+    }
+    function changeFiveTotal(t) {
+        //将第四个项目进行计分
+        if(t.value.indexOf('e')!=-1){
+            showTips("暂不支持E的科学记数法!");
+            return
+        }
+        fiveValue=0;
+        $('.fiveValue').each(function () {
+            fiveValue+=Number(this.value);
+        });
+        $("#fiveTotal").val(fiveValue);
+    }
+    function changeSixTotal(t) {
+        //将第四个项目进行计分
+        if(t.value.indexOf('e')!=-1){
+            showTips("暂不支持E的科学记数法!");
+            return
+        }
+        sixValue=0;
+        $('.sixValue').each(function () {
+            sixValue+=Number(this.value);
+        });
+        $("#sixTotal").val(sixValue);
+    }
+    $('.checkboxItem').each(function () {
+       this.addEventListener('click',function () {
+           this.firstElementChild.checked="checked";
+       }) ;
+    });
+    function getMore(t) {
+        document.getElementById('openPDF').setAttribute("href","../images/three.pdf");
+        $('#openPDF').media({width:'100%', height:window.innerHeight*0.8});
+        $('#test').click();
+    }
+    function showBigImg(t) {
+        document.getElementById('imgShow').src=t.src;
+        $('#test2').click();
+    }
+    function addAttach(t) {
+        newImg=t.previousElementSibling.cloneNode(true);
+        newImg.setAttribute('itemId',(parseInt(newImg.getAttribute('itemId'))+1));
+        t.parentNode.insertBefore(newImg,t);
+        t.previousElementSibling.firstElementChild.src=defaultImage;
+    };
+    function showTips(msg) {
+        t = document.getElementById('tips');
+        t.innerText = '提示:'+msg;
+        t.style.left = (window.innerWidth - (t.innerText.length*16)) / 2 + 'px';
+        t.style.display = 'block';
+        setTimeout(function () {
+            t.style.display = 'none'
+        }, 5000);
+    };
+    defaultImage=document.getElementById('imgElement').src;
+    //该处增加事件,让当点击的时候自动修改总分
+
+    function deleteItem(t) {
+        if(t.previousElementSibling.previousElementSibling.getAttribute('itemId')=='0'){
+            return
+        }
+        t.parentElement.removeChild(t.previousElementSibling.previousElementSibling);
+    }
+    fileData=new Array();
+    allowSuffixList=['PDF',"JPG","PNG","GIF","JPEG"];
+
+    function uploadFiles(t) {
+        readIo=new FileReader();
+        if(!t.files[0]){
+            return
+        }
+        v=t.value;
+        try{
+            d=v.split('.');
+            if(d.length<2){
+                showTips('目前只支持PDF和图片类型的文件进行上传!');
+                return
+            }
+            suffix=d[d.length-1];
+        }catch (e) {
+            console.log(e);
+            return
+        }
+        if(allowSuffixList.indexOf(suffix.toUpperCase())==(-1)){
+            showTips('目前只支持PDF和图片类型的文件进行上传!');
+            return
+        }
+        console.log("文件未监测到异常");
+        if(fileData.length>0){
+            imgElement=fileData.pop();
+        }
+        data=new FormData();
+        data.append("file",t.files[0]);
+        $.ajax({
+            type: 'post',
+            url: '/uploadFile',
+            data: data,
+            async:'true',
+            success: function (result) {
+                try {
+                    result=JSON.parse(result);
+                    if(result.code=="0"){
+                        imgElement.src=result.msg;
+                    }
+                }catch (e) {
+                    console.log(e);
+                    return
+                }
+            },
+            contentType:false,
+            processData:false,
+        });
+        t.value="";
+        t.outerHTML=t.outerHTML;
+    };
+    function showImage(e) {
+        imgPrefix = e.src.lastIndexOf("/");
+        fileFormat = e.src.substring(imgPrefix + 1,e.src.length);
+        if(fileFormat=="pdfImg.jpg"||(e.src.indexOf('image')==-1)&&(fileFormat!="attachment.jpg")){
+            //打开一个新界面显示文件内容
+            getMore(e);
+            return
+        }
+        if(e.getAttribute('originImg')!='0'){
+            //展示大图
+            if(fileFormat=="attachment.jpg"){
+                document.getElementById("fileItem").click();
+                fileData.push(e);
+                return
+            }
+            showBigImg(e);
+            return
+        }
+        document.getElementById("fileItem").click();
+        fileData.push(e);
+    }
+    function removeImage(t) {
+        t.previousElementSibling.src=defaultImage;
+        t.previousElementSibling.setAttribute('originImg','0');
+    }
+    function collectOneData(){
+        data=new Object();
+        data['userScore']=$('#oneTotal').val();//总
+        // 获取立项项目
+        data["setProject"]=new Array();
+        $('.oneItem1').each(function (n,e) {
+            data["setProject"][n]=new Object();
+            s=$(this).find(".ipt");
+            for (let i = 0; i <s.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="title";
+                        break
+                    }
+                    case 1:{
+                        k="startDate";
+                        break
+                    }
+                    case 2:{
+                        k="score"
+                    }
+                }
+                data['setProject'][n][k]=s[i].value;
+            }
+            t=$(this).find("select");
+            for (let i = 0; i <t.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="type";
+                        break
+                    }
+                    case 1:{
+                        k="count";
+                        break
+                    }
+                    case 2:{
+                        k="rank";
+                        break
+                    }
+                }
+                data['setProject'][n][k]=t[i].options[t[i].selectedIndex].text;
+            }
+            imgItem=$(this).find('img');
+            imgTotal=0;
+            data["setProject"][n]["files"]=new Array();
+            for (let i = 0; i < imgItem.length-1; i++) {
+                if (imgItem[i].src == defaultImage) {
+                    continue
+                }
+                data["setProject"][n]["files"].push(imgItem[i].src);
+                imgTotal++;
+            }
+        });
+        try {
+            d=JSON.stringify(data)
+            return d
+        }catch (e) {
+            console.log(e)
+            return ""
+        }
+    }
+    function collectTwoData() {
+        //获取结题项目
+        data=new Object();
+        data["userScore"]=$('#twoTotal').val();
+        data["conclude"]=new Array();
+        $('.twoItem1').each(function (n,e) {
+            data["conclude"][n]=new Object();
+            s=$(this).find(".ipt");
+            for (let i = 0; i <s.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="title";
+                        break
+                    }
+                    case 1:{
+                        k="endDate";
+                        break
+                    }
+                    case 2:{
+                        k="score";
+                        break
+                    }
+                }
+                data['conclude'][n][k]=s[i].value;
+            }
+            t=$(this).find("select");
+            for (let i = 0; i <t.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="type";
+                        break
+                    }
+                    case 1:{
+                        k="count";
+                        break
+                    }
+                    case 2:{
+                        k="rank";
+                        break
+                    }
+                }
+                data['conclude'][n][k]=t[i].options[t[i].selectedIndex].text;
+            }
+            imgItem=$(this).find('img');
+            imgTotal=0;
+            data["conclude"][n]["files"]=new Array();
+            for (let i = 0; i < imgItem.length-1; i++) {
+                if (imgItem[i].src == defaultImage) {
+                    continue
+                }
+                data["conclude"][n]["files"].push(imgItem[i].src);
+                imgTotal++;
+            }
+        });
+        try {
+            d=JSON.stringify(data)
+            return d
+        }catch (e) {
+            console.log(e)
+            return ""
+        }
+    }
+    //科技成果项目
+    function collectThreeData(){
+        data=new Object();
+        data["achievement"]=new Array();
+        data['userScore']=$('#threeTotal').val();
+        $('.threeItem1').each(function (n,e) {
+            data["achievement"][n]=new Object();
+            s=$(this).find(".ipt");
+            for (let i = 0; i <s.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="title";
+                        break
+                    }
+                    case 1:{
+                        k="level";
+                        break
+                    }
+                    case 2:{
+                        k="grade";
+                        break
+                    }
+                    case 3:{
+                        k="score";
+                        break
+                    }
+                    case 4:{
+                        k="date";
+                    }
+                }
+                data['achievement'][n][k]=s[i].value;
+            }
+            t=$(this).find("select");
+            for (let i = 0; i <t.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="type";
+                        break
+                    }
+                    case 1:{
+                        //奖项级别国家级
+                        k="count";
+                        break
+                    }
+                    case 2:{
+                        //奖项等级
+                        k="rank";
+                        break
+                    }
+                }
+                data['achievement'][n][k]=t[i].options[t[i].selectedIndex].text;
+            }
+            imgItem=$(this).find('img');
+            imgTotal=0;
+            data["achievement"][n]["files"]=new Array();
+            for (let i = 0; i < imgItem.length-1; i++) {
+                if (imgItem[i].src == defaultImage) {
+                    continue
+                }
+                data["achievement"][n]["files"].push(imgItem[i].src);
+                imgTotal++;
+            }
+        });
+        try {
+            d=JSON.stringify(data)
+            return d
+        }catch (e) {
+            console.log(e)
+            return ""
+        }
+    }
+    function collectFourData() {
+        //艺术作品名称
+        data=new Object();
+        data["artistic"]=new Array();
+        data["userScore"]=$('#fourTotal').val();
+        $('.fourItem1').each(function (n,e){
+            data["artistic"][n]=new Object();
+            s=$(this).find(".ipt");
+            for (let i = 0; i <s.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="title";
+                        break
+                    }
+                    case 1:{
+                        k="level";
+                        break
+                    }
+                    case 2:{
+                        k="publishDate";
+                        break
+                    }
+                    case 3:{
+                        k="shoulu";
+                        break
+                    }
+                    case 4:{
+                        k="score";
+                    }
+                }
+                data['artistic'][n][k]=s[i].value;
+            }
+            t=$(this).find("select");
+            for (let i = 0; i <t.length;i++){
+                switch (i){
+                    case 0:{
+                        k="count";
+                        break
+                    }
+                    case 1:{
+                        //奖项级别国家级
+                        k="rank";
+                        break
+                    }
+                }
+                data['artistic'][n][k]=t[i].options[t[i].selectedIndex].text;
+            }
+            imgItem=$(this).find('img');
+            imgTotal=0;
+            data["artistic"][n]["files"]=new Array();
+            for (let i = 0; i < imgItem.length-1; i++) {
+                if (imgItem[i].src == defaultImage) {
+                    continue
+                }
+                data["artistic"][n]["files"].push(imgItem[i].src);
+                imgTotal++;
+            }
+        });
+        //个人著作
+        data["profess"]=new Array();
+        $('.fourItem2').each(function (n,e) {
+            data["profess"][n]=new Object();
+            s=$(this).find(".ipt");
+            for (let i = 0; i <s.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="title";
+                        break
+                    }
+                    case 1:{
+                        k="publicName";
+                        break
+                    }
+                    case 2:{
+                        k="publishDate";
+                        break
+                    }
+                    case 3:{
+                        k="wordsNum";
+                        break
+                    }
+                    case 4:{
+                        k="score";
+                    }
+                }
+                data['profess'][n][k]=s[i].value;
+            }
+            t=$(this).find("select");
+            for (let i = 0; i <t.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="count";
+                        break
+                    }
+                    case 1:{
+                        //奖项级别国家级
+                        k="rank";
+                        break
+                    }
+                    case 2:{
+                        //奖项等级
+                        k="grade";
+                        break
+                    }
+                }
+                data['profess'][n][k]=t[i].options[t[i].selectedIndex].text;
+            }
+            imgItem=$(this).find('img');
+            imgTotal=0;
+            data["profess"][n]["files"]=new Array();
+            for (let i = 0; i < imgItem.length-1; i++) {
+                if (imgItem[i].src == defaultImage) {
+                    continue
+                }
+                data["profess"][n]["files"].push(imgItem[i].src);
+                imgTotal++;
+            }
+        });
+        data["compile"]=new Array();
+        $('.fourItem3').each(function (n,e) {
+            data["compile"][n]=new Object();
+            s=$(this).find(".ipt");
+            for (let i = 0; i <s.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="title";
+                        break
+                    }
+                    case 1:{
+                        k="publicName";
+                        break
+                    }
+                    case 2:{
+                        k="publishDate";
+                        break
+                    }
+                    case 3:{
+                        k="wordsNum";
+                        break
+                    }
+                    case 4:{
+                        k="score";
+                    }
+                }
+                data['compile'][n][k]=s[i].value;
+            }
+            t=$(this).find("select");
+            for (let i = 0; i <t.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="count";
+                        break
+                    }
+                    case 1:{
+                        //奖项级别国家级
+                        k="rank";
+                        break
+                    }
+                    case 2:{
+                        //奖项等级
+                        k="grade";
+                        break
+                    }
+                }
+                data['compile'][n][k]=t[i].options[t[i].selectedIndex].text;
+            }
+            imgItem=$(this).find('img');
+            imgTotal=0;
+            data["compile"][n]["files"]=new Array();
+            for (let i = 0; i < imgItem.length-1; i++) {
+                if (imgItem[i].src == defaultImage) {
+                    continue
+                }
+                data["compile"][n]["files"].push(imgItem[i].src);
+                imgTotal++;
+            }
+        });
+        data["thesis"]=new Array();
+        $('.fourItem4').each(function (n,e) {
+            data["thesis"][n]=new Object();
+            s=$(this).find(".ipt");
+            for (let i = 0; i <s.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="title";
+                        break
+                    }
+                    case 1:{
+                        k="qikanName";
+                        break
+                    }
+                    case 2:{
+                        k="publishDate";
+                        break
+                    }
+                    case 3:{
+                        k="shoulu";
+                        break
+                    }
+                    case 4:{
+                        k="score";
+                    }
+                }
+                data['thesis'][n][k]=s[i].value;
+            }
+            t=$(this).find("select");
+            for (let i = 0; i <t.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="count";
+                        break
+                    }
+                    case 1:{
+                        //奖项级别国家级
+                        k="rank";
+                        break
+                    }
+                }
+                data['thesis'][n][k]=t[i].options[t[i].selectedIndex].text;
+            }
+            imgItem=$(this).find('img');
+            imgTotal=0;
+            data["thesis"][n]["files"]=new Array();
+            for (let i = 0; i < imgItem.length-1; i++) {
+                if (imgItem[i].src == defaultImage) {
+                    continue
+                }
+                data["thesis"][n]["files"].push(imgItem[i].src);
+                imgTotal++;
+            }
+        });
+        data["intellect"]=new Array();
+        $('.fourItem5').each(function (n,e) {
+            data["intellect"][n]=new Object();
+            s=$(this).find(".ipt");
+            for (let i = 0; i <s.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="title";
+                        break
+                    }
+                    case 1:{
+                        k="date";
+                        break
+                    }
+                    case 2:{
+                        k="score";
+                        break
+                    }
+                }
+                data['intellect'][n][k]=s[i].value;
+            }
+            t=$(this).find("select");
+            for (let i = 0; i <t.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="ip";
+                        break
+                    }
+                    case 1:{
+                        //奖项级别国家级
+                        k="count";
+                        break
+                    }
+                    case 2:{
+                        //奖项级别国家级
+                        k="rank";
+                        break
+                    }
+                }
+                data['intellect'][n][k]=t[i].options[t[i].selectedIndex].text;
+            }
+            imgItem=$(this).find('img');
+            imgTotal=0;
+            data["intellect"][n]["files"]=new Array();
+            for (let i = 0; i < imgItem.length-1; i++) {
+                if (imgItem[i].src == defaultImage) {
+                    continue
+                }
+                data["intellect"][n]["files"].push(imgItem[i].src);
+                imgTotal++;
+            }
+        });
+        try {
+            d=JSON.stringify(data)
+            return d
+        }catch (e) {
+            console.log(e)
+            return ""
+        }
+    }
+    function collectFiveData() {
+        //科技成果转化分值
+        data=new Object();
+        data['userScore']=$('#fiveTotal').val();//总分
+        data["transform"]=new Array();
+        $('.fiveItem1').each(function (n,e) {
+            data["transform"][n]=new Object();
+            s=$(this).find(".ipt");
+            for (let i = 0; i <s.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="title";
+                        break
+                    }
+                    case 1:{
+                        k="date";
+                        break
+                    }
+                    case 2:{
+                        k="shouyi";
+                        break
+                    }
+                    case 3:{
+                        k="score";
+                        break
+                    }
+                }
+                data['transform'][n][k]=s[i].value;
+            }
+            t=$(this).find("select");
+            for (let i = 0; i <t.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="method";
+                        break
+                    }
+                    case 1:{
+                        //奖项级别国家级
+                        k="catagory";
+                        break
+                    }
+                    case 2:{
+                        //奖项级别国家级
+                        k="count";
+                        break
+                    }
+                    case 3:{
+                        //奖项级别国家级
+                        k="rank";
+                        break
+                    }
+                }
+                data['transform'][n][k]=t[i].options[t[i].selectedIndex].text;
+            }
+            imgItem=$(this).find('img');
+            imgTotal=0;
+            data["transform"][n]["files"]=new Array();
+            for (let i = 0; i < imgItem.length-1; i++) {
+                if (imgItem[i].src == defaultImage) {
+                    continue
+                }
+                data["transform"][n]["files"].push(imgItem[i].src);
+                imgTotal++;
+            }
+        });
+        try {
+            d=JSON.stringify(data)
+            return d
+        }catch (e) {
+            console.log(e)
+            return ""
+        }
+    }
+    function collectSixData(){
+        data=new Object();
+        data['userScore']=$('#sixTotal').val();//总分
+        data["special"]=new Array();
+        $('.sixItem1').each(function (n,e) {
+            data['special'][n]=new Object();
+            s=$(this).find(".ipt");
+            for (let i = 0; i <s.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="startDate";
+                        break
+                    }
+                    case 1:{
+                        k="endDate";
+                        break
+                    }
+                    case 2:{
+                        k="location";
+                        break
+                    }
+                    case 3:{
+                        k="score";
+                        break
+                    }
+                    case 4:{
+                        k="shangGang";
+                        break
+                    }
+                }
+                data['special'][n][k]=s[i].value;
+            }
+            t=$(this).find("select");
+            for (let i = 0; i <t.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="department";
+                        break
+                    }
+                }
+                data['special'][n][k]=t[i].options[t[i].selectedIndex].text;
+            }
+            imgItem=$(this).find('img');
+            imgTotal=0;
+            data["special"][n]["files"]=new Array();
+            for (let i = 0; i < imgItem.length-1; i++) {
+                if (imgItem[i].src == defaultImage) {
+                    continue
+                }
+                data["special"][n]["files"].push(imgItem[i].src);
+                imgTotal++;
+            }
+        });
+        //三区人才分值
+        data['zero3']=new Array();
+        $('.sixItem2').each(function (n,e) {
+            data['zero3'][n]=new Object();
+            s=$(this).find(".ipt");
+            for (let i = 0; i <s.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="startDate";
+                        break
+                    }
+                    case 1:{
+                        k="endDate";
+                        break
+                    }
+                    case 2:{
+                        k="location";
+                        break
+                    }
+                    case 3:{
+                        k="score";
+                        break
+                    }
+                    case 4:{
+                        k="shangGang";
+                        break
+                    }
+                }
+                data['zero3'][n][k]=s[i].value;
+            }
+            t=$(this).find("select");
+            for (let i = 0; i <t.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="department";
+                        break
+                    }
+                }
+                data['zero3'][n][k]=t[i].options[t[i].selectedIndex].text;
+            }
+            imgItem=$(this).find('img');
+            imgTotal=0;
+            data["zero3"][n]["files"]=new Array();
+            for (let i = 0; i < imgItem.length-1; i++) {
+                if (imgItem[i].src == defaultImage) {
+                    continue
+                }
+                data["zero3"][n]["files"].push(imgItem[i].src);
+                imgTotal++;
+            }
+        });
+        try {
+            d=JSON.stringify(data)
+            return d
+        }catch (e) {
+            console.log(e)
+            return ""
+        }
+    }
+</script>
+</html>

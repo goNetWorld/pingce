@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>参评人员科研水平业绩计分表</title>
+
+<link rel="stylesheet" href="../static/js/jquery-responsive-tables.css" />
+<link rel="stylesheet" href="../static/css/bootstrap.css">
+<script type="text/javascript" src="../static/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../static/js/jquery-responsiveTables.js"></script>
+<script type="text/javascript" src="../static/js/jquery.responsiveText.js"></script>
+<script type="text/javascript" src="../static/js/bootstrap.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('table.responsive').responsiveTables();
+});
+</script>
+
+
+<style type="text/css">
+	body {margin:0; padding:20px; font-family: 'Average Sans', sans-serif; font-size:16px; font-weight:normal; line-height:1.5; background:whitesmoke; color:#000000;}
+	a, a:link, a:visited {color:#fff;text-decoration: none;border-bottom:1px dashed #3F6558;-webkit-transition:border-color 0.3s ease-in;}
+	a:hover, a:focus {border-bottom:1px dashed #fff;}
+	h1, h2, h3, p {text-align:center;}
+	h1, h2, h3 {padding: 0 0.1em;}
+	h1[data-scrollable] { line-height: 1.85; }
+	.heading {margin-top:0.25em;font-family:'Pacifico', sans-serif; text-shadow:0.1em 0.1em 2px #3F6558;}
+	.subheading {font-weight:normal;}
+	.button {margin:2em 0;}
+	.button a {background:#3F6558;padding:0.4em 1em;border:none;border-radius:10px;}
+	.clearfix {clear:both;}
+	.space {margin:5em 0;}
+
+
+	table {
+		border: 1px solid #3F6558;
+		margin-bottom: 20px;
+	}
+	th, td {
+		border: 1px solid #000000;
+		padding: 0 10px;
+	}
+	tbody th, tbody td {
+	border: 1px solid black;
+	}
+	*{
+		text-align: center;
+	}
+	td{
+		font-weight: 500;
+	}
+	th,td{
+		font-size: 20px;
+	}
+	p{
+		text-align: left;
+	}
+	body{
+		background: white;
+	}
+	.userInput{
+		border-radius: 0px;
+		border: 0px;
+		border-bottom: 1px solid black;
+		line-height: 20px;
+		text-align: left;
+		bottom: 5px;
+		position: relative;
+		background: white;
+	}
+	.sign{
+		width: 50%;
+		float: left;
+		text-align: left;
+		margin-bottom: 10px;
+
+	}
+	.sign>input{
+		width: 6em;
+	}
+	td,.sign {
+		font-size: 15px;
+	}
+	input:focus{
+		border: 0;
+	}
+	input:active{
+		border: 0;
+	}
+	ul{
+		list-style: none;
+	}
+</style>
+
+</head>
+<body>
+<h1>参评人员科研水平业绩计分表</h1>
+<div style="width: 80%;margin: auto">
+	<div class="sign">
+		<span>申报人姓名:</span>
+		<input class="userInput" type="text" name="realName">
+	</div>
+	<div class="sign signRight">
+		<span>所在单位:</span>
+		<input  class="userInput" type="text" name="company">
+	</div>
+	<table class="responsive" data-min="11" data-max="30" cellpadding="0" cellspacing="0" style="width: 100%;margin: auto">
+		<thead>
+		<tr>
+			<th valign="middle" colspan="2">类别</th>
+			<th valign="middle">计分</th>
+			<th valign="middle">说明(计分详情依据)</th>
+			<th valign="middle" style="width: 4em" hidden>状态</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td valign="middle" colspan="2">基本条件</td>
+			<td valign="middle" id="score1">
+
+			</td>
+			<td valign="middle">
+				合格(<input type="radio" name="qualify" value="1"/>)
+				不合格(<input type="radio" name="qualify" value="0"/>)
+			</td>
+			<td valign="middle" class="verificationItem" style="display: none">
+			</td>
+		</tr>
+		<tr>
+			<td   rowspan="2">科研项目</td>
+			<td>立项分数</td>
+			 <td></td>
+			 <td>
+    			{% for i in range(len(setProject['setProject'])) %}
+					{{setProject['setProject'][i].get('title','')}}
+					{{setProject['setProject'][i].get('startDate','')}}
+					{{setProject['setProject'][i].get('score','')}}
+					{{setProject['setProject'][i].get('type','')}}
+					{{setProject['setProject'][i].get('count','')}}
+					{{setProject['setProject'][i].get('rank','')}}
+				{%end%}
+			 </td>
+		</tr>
+		<tr>
+			<td>结题分值</td>
+			<td></td>
+			<td>
+    			{% for i in range(len(conclude['conclude'])) %}
+					{{conclude['conclude'][i].get('title','')}}
+					{{conclude['conclude'][i].get('startDate','')}}
+					{{conclude['conclude'][i].get('score','')}}
+					{{conclude['conclude'][i].get('type','')}}
+					{{conclude['conclude'][i].get('count','')}}
+					{{conclude['conclude'][i].get('rank','')}}
+				{%end%}
+			</td>
+		</tr>
+		<tr>
+			<td rowspan="3">科技成果</td>
+			<td>科技成果奖励及鉴定科研分值</td>
+			<td></td>
+			<td>
+    			{% for i in range(len(results['achievement'])) %}
+					{{results['achievement'][i].get('title','')}}
+					{{results['achievement'][i].get('level','')}}
+					{{results['achievement'][i].get('grade','')}}
+					{{results['achievement'][i].get('score','')}}
+					{{results['achievement'][i].get('date','')}}
+					{{results['achievement'][i].get('type','')}}
+					{{results['achievement'][i].get('count','')}}
+					{{results['achievement'][i].get('rank','')}}
+				{%end%}
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 11em;">
+				著作、艺术作品、论文(含收录或转载)、其他知识产权分值
+			</td>
+			<td></td>
+			<td>
+				<h4>艺术作品</h4>
+    			{% for i in range(len(artistic['artistic'])) %}
+					{{artistic['artistic'][i].get('title','')}}
+					{{artistic['artistic'][i].get('level','')}}
+					{{artistic['artistic'][i].get('publishDate','')}}
+					{{artistic['artistic'][i].get('shoulu','')}}
+					{{artistic['artistic'][i].get('score','')}}
+					{{artistic['artistic'][i].get('count','')}}
+					{{artistic['artistic'][i].get('rank','')}}
+				<br>
+				{%end%}
+				<h4>专业学术著作</h4>
+    			{% for i in range(len(artistic['profess'])) %}
+					{{artistic['profess'][i].get('title','')}}
+					{{artistic['profess'][i].get('publicName','')}}
+					{{artistic['profess'][i].get('publishDate','')}}
+					{{artistic['profess'][i].get('wordsNum','')}}
+					{{artistic['profess'][i].get('score','')}}
+					{{artistic['profess'][i].get('count','')}}
+					{{artistic['profess'][i].get('rank','')}}
+					{{artistic['profess'][i].get('grade','')}}
+				<br>
+				{%end%}
+				<h4>编著/译著</h4>
+    			{% for i in range(len(artistic['compile'])) %}
+					{{artistic['compile'][i].get('title','')}}
+					{{artistic['compile'][i].get('publicName','')}}
+					{{artistic['compile'][i].get('publishDate','')}}
+					{{artistic['compile'][i].get('wordsNum','')}}
+					{{artistic['compile'][i].get('score','')}}
+					{{artistic['compile'][i].get('count','')}}
+					{{artistic['compile'][i].get('rank','')}}
+					{{artistic['compile'][i].get('grade','')}}
+				<br>
+				{%end%}
+				<h4>论文</h4>
+    			{% for i in range(len(artistic['thesis'])) %}
+					{{artistic['thesis'][i].get('title','')}}
+					{{artistic['thesis'][i].get('qikanName','')}}
+					{{artistic['thesis'][i].get('publishDate','')}}
+					{{artistic['thesis'][i].get('shoulu','')}}
+					{{artistic['thesis'][i].get('score','')}}
+					{{artistic['thesis'][i].get('count','')}}
+					{{artistic['thesis'][i].get('rank','')}}
+				<br>
+				{%end%}
+				<h4>创新/创业获奖</h4>
+    			{% for i in range(len(artistic['intellect'])) %}
+					{{artistic['intellect'][i].get('title','')}}
+					{{artistic['intellect'][i].get('date','')}}
+					{{artistic['intellect'][i].get('score','')}}
+					{{artistic['intellect'][i].get('ip','')}}
+					{{artistic['intellect'][i].get('count','')}}
+					{{artistic['intellect'][i].get('rank','')}}
+				<br>
+				{%end%}
+			</td>
+		</tr>
+		<tr>
+			<td>科技成果转化分值</td>
+			<td></td>
+			<td>
+    			{% for i in range(len(transform['transform'])) %}
+					{{transform['transform'][i].get('title','')}}
+					{{transform['transform'][i].get('date','')}}
+					{{transform['transform'][i].get('behalf','')}}
+					{{transform['transform'][i].get('score','')}}
+					{{transform['transform'][i].get('method','')}}
+					{{transform['transform'][i].get('category','')}}
+					{{transform['transform'][i].get('count','')}}
+					{{transform['transform'][i].get('rank','')}}
+				<br>
+				{%end%}
+			</td>
+		</tr>
+		<tr>
+			<td   rowspan="2">其他</td>
+			<td>特派员分值</td>
+			<td></td>
+			<td>
+    			{% for i in range(len(other['special'])) %}
+					{{other['special'][i].get('startDate','')}}
+					{{other['special'][i].get('endDate','')}}
+					{{other['special'][i].get('location','')}}
+					{{other['special'][i].get('score','')}}
+					{{other['special'][i].get('beginDate','')}}
+					{{other['special'][i].get('department','')}}
+				{%end%}
+			</td>
+		</tr>
+		<tr>
+			<td>"三区人才"分值</td>
+			<td></td>
+			<td>
+    			{% for i in range(len(other['zero3'])) %}
+					{{other['zero3'][i].get('startDate','')}}
+					{{other['zero3'][i].get('endDate','')}}
+					{{other['zero3'][i].get('location','')}}
+					{{other['zero3'][i].get('score','')}}
+					{{other['zero3'][i].get('beginDate','')}}
+					{{other['zero3'][i].get('department','')}}
+				{%end%}
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>总分</td>
+			<td></td>
+			<td></td>
+		</tr>
+		</tbody>
+	</table>
+	<p>注:申报人必须如实填写,弄虚作假者取消参评资格。</p>
+	<div class="manageSign1 sign">
+		<span>审核人(签名):</span>
+		<input class="userInput" type="text" name="realName">
+	</div>
+	<div  class="manageSign2 sign">
+		<span>审核人(签名):</span>
+		<input  class="userInput" type="text" name="company">
+	</div>
+	<div style="clear: left;height: 10px"></div>
+	<div  class="departmentSign sign">
+		<span>所在学院或部门(盖章):</span>
+		<input class="userInput" type="text" name="realName">
+	</div>
+	<div class="technologyDepartmentSign sign">
+		<span >科技部门(盖章):</span>
+		<input  class="userInput" type="text" name="company">
+	</div>
+</div>
+<br>
+<br>
+<h4 style="text-align: center;" id="leisureElement">
+	<span onclick="printTest()" class="btn btn-primary btn-lg">
+		打印
+	</span>
+</h4>
+</body>
+<script type="application/javascript">
+	function printTest() {
+		beforeprint();
+		window.print();
+		afterprint();
+    }
+    function beforeprint(){
+        console.log("befre")
+        document.getElementById('leisureElement').style.display='none';
+	}
+
+	function afterprint()	{
+        console.log('after')
+        document.getElementById('leisureElement').style.display='block';
+	}
+</script>
+</html>

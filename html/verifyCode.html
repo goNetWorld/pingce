@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title></title>
+</head>
+
+<body>
+输入验证码：<input name="code" > <br>
+输入密码：<input name="password" > <br>
+<button onclick="sub()">click</button>
+
+
+<script th:src="@{/jquery-3.3.1.js}"></script>
+<script th:inline="javascript">
+    APP_PATH = /*[[@{/}]]*/ "//";
+    APP_PATH = APP_PATH.substring(0, APP_PATH.length - 1);
+</script>
+<script>
+    function sub() {
+        let d = {}
+        $("body [name]").toArray().forEach(e => {
+            d[e.name] = e.value;
+        });
+        console.log("发送数据：", d)
+        $.post(APP_PATH + "/verifyCode", d, data => {
+            if (data.code == 0) {
+                alert("修改密码成功");
+            } else {
+                alert(data.message);
+            }
+        });
+    }
+</script>
+</body>
+</html>

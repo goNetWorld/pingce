@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <script type="text/javascript" src="../static/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../static/js/Util.js"></script>
+    <script type="text/javascript" src="../static/js/modal.js"></script>
+    <script type="text/javascript" src="../static/js/JqueryMedia.js"></script>
+    <meta charset="UTF-8">
+    <title>参评人员教学工作综合测评计分表</title>
+    <style type="text/css">
+        a{
+            text-decoration: none;
+        }
+        table {
+            border: 1px solid #3F6558;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 0 10px;
+            border: 1px solid #000000;
+            text-align: center;
+        }
+        body{
+            background: white;
+        }
+        td{
+            font-weight: 500;
+        }
+        th,td{
+            font-size: 20px;
+        }
+        .userInput{
+            border-radius: 0px;
+            border: 0px;
+            border-bottom: 1px solid black;
+            line-height: 20px;
+            text-align: left;
+            bottom: 5px;
+            position: relative;
+            background: white;
+            max-width: 10em;
+            width: 8em;
+        }
+        .sign{
+            width: 50%;
+            float: left;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        p{
+            text-align: left;
+        }
+        td,.sign {
+            font-size: 15px;
+            line-height: 20px;
+        }
+        .step1{
+            width: 3em;
+            border-left: 30px solid cyan;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+        }
+        .middle{
+            color: deepskyblue;
+        }
+        #images>.imgItems>img{
+            height: 80px;
+            width: 80px;
+            line-height: 40px;
+        }
+        #appendImg,#appendItem{
+            height: 35px;
+            width: 35px;
+            font-size: 35px;
+            margin-left: 8px;
+            margin-top: 2px;
+        }
+        #uploadBar{
+            visibility: visible;
+            height: 20px;
+            margin: -10px 0px;
+        }
+        select{
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+        .iptItems{
+            margin: 6px 0px;
+            position: relative;
+        }
+        .iptItems>input{
+            text-align: left;
+        }
+        .iptItems>img{
+            height: 80px;
+            width: 80px;
+            margin-top: -5px;
+        }
+        .glyphicon-edit{
+            font-size: 24px;
+            margin: 3px 0px;
+        }
+        #qualityItem{
+            text-align: left;
+            margin: 0px;
+        }
+        #qualityItem>label{
+            margin: 5px 0px;
+
+        }
+        .userUploadImage{
+            height: 80px;
+            width: 80px;
+        }
+        #getReward>.row{
+            /*text-align: left;*/
+            margin: 5px 0px;
+        }
+        label>span>input{
+            width: 20%;
+        }
+        input{
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            margin: 5px 5px;
+        }
+        a:active{
+            color: #ffffff;
+        }
+        *{
+            color: #000;
+        }
+        img{
+            border-radius: 5px;
+        }
+        .appendAttach{
+            height: 35px;
+            width: 35px;
+        }
+
+        .deleteImg{
+            margin-left: 0px;
+            height: 20px;
+            width: 20px;
+        }
+        .appendItem{
+            text-align: center;
+            height: 40px;
+            width: 40px;
+        }
+        a:hover{
+            text-decoration:none;
+        }
+        a:active{
+            text-decoration:none;
+        }
+        .deleteItem{
+            text-align: center;
+            height: 40px;
+            width: 40px;
+        }
+        body{
+            margin: 20px;
+            padding: 20px;
+        }
+        .items{
+            border-radius: 5px;
+            border:solid 1px black;
+            padding: 5px;
+        }
+        img{
+            height: 50px;
+            width: 50px;
+            text-align: center;
+        }
+        .childItem{
+            border-radius: 10px;
+            border: red dashed 1px;
+        }
+        body{
+            width: 80%;
+            margin: auto;
+        }
+        .items{
+            margin: 3px 0px;
+        }
+        .childItem{
+            margin: 3px;
+        }
+        .valueCls{
+            width: 4em;
+        }
+        .nameCls{
+            width:9em ;
+        }
+        .glyphicon{
+            margin: 15px 0px;
+            top: -12px;
+            left: -35px;
+            position: relative;
+            font-size: 20px;
+            color:red;
+        }
+        select{
+            margin-top: 4px;
+        }
+        .fileItem{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="row" style="border-bottom: solid 1px antiquewhite;">
+    <div class="col-md-4">工号:2018200962</div>
+    <div class="col-md-4">
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+                填写:参评人员教学工作综合测评计分表
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4" style="top: -8px;">
+        <img src="../static/images/defuser.png" alt="" style="height: 40px;width: 40px">
+        妖孽只在夜里哭
+    </div>
+</div>
+<div style="display: none;">
+    <a id="test" href="#technologyResultValue" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#technologyResultValue" style="float: right;">
+    </a>
+    <a id="test2" href="#imgResult" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#imgResult" style="float: right;">
+    </a>
+</div>
+<h4>学历学位</h4>
+<form action="" id="total">
+<section>总分值: <input type="number" id="oneTotal" name="oneTotal" value="0" disabled><br></section>
+<div class="items" id="education">
+    <select name="" id="edu" required>
+        <option value="0">最高学位</option>
+        <option value="5">博士生学位</option>
+        <option value="3">研究生学位</option>
+        <option value="1">学士学位</option>
+    </select>
+    <select name="" id="degree" required>
+        <option value="最高学历">最高学历</option>
+        <option value="博士生学历">博士生学历</option>
+        <option value="研究生学历">研究生学历</option>
+        <option value="本科学历">本科学历</option>
+    </select><br>
+    附件:
+    <span>
+        <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+        <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+    </span>
+    <img src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+</div>
+<hr>
+<h4>师德师风</h4>
+<section>总分值: <input type="text" id="twoTotal" name="twoTotal" value="0" disabled><br></section>
+<div class="items" id="moralItem">
+    政治思想,
+    职业道德,
+    组织纪律,
+    团队协作:
+    <label class="radio-inline">
+        <input type="radio" name="politicsValue" value="5" class="moralValue"> <span>优</span>
+    </label>
+    <label class="radio-inline">
+        <input type="radio" name="politicsValue" value="4" class="moralValue"> <span>良</span>
+    </label>
+    <label class="radio-inline">
+        <input type="radio" name="politicsValue" value="3" class="moralValue"> <span>合格</span>
+    </label>
+    <label class="radio-inline">
+        <input type="radio" name="politicsValue" checked value="0" class="moralValue"><span>无</span>
+    </label>
+    <br>
+    附件:
+    <span>
+        <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+        <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+    </span>
+    <img src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+</div>
+<hr>
+<h4>教学工作量</h4>
+<section>总分值: <input type="number" value="0" name="threeTotal" id="threeTotal" disabled><br></section>
+<div class="items" id="workload">
+    基本工作量分值: <input type="text" id="threeDefaultScore" disabled value="25" style="width: 2em">
+    超出或不足工作量的分值:
+    <select name="" id="oddAdd" onchange="changeValue(this)">
+        <option value="+">+</option>
+        <option value="-">-</option>
+    </select>
+    <input type="number" class="valueCls" min="0" max="25" id="workloadScore" onchange="changeThreeTotal(this)">
+    年均工作量:
+    <input type="number" id="yearTotal">
+    附件:
+    <span>
+        <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+        <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+    </span>
+    <img src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+</div>
+<hr>
+<h4>教学质量与效果</h4>
+<section>总分值: <input type="number" value="0" name="fourTotal" class="valueCls" id="fourTotal" disabled><br></section>
+<div class="items fourItem1">
+    <div itemId="0" id="nextQuality" class="childItem qualityItems">
+        <div>
+            <p>
+                <input type="text" placeholder='输入年份,例:2018' class="ipt">
+            <input type="checkbox" value="1"><span del="0">年度综合考核合格</span>;
+            <input type="checkbox" value="2"><span del="0">年度综合考核优秀</span>;
+            <input type="checkbox" value="3"><span del="0">教学评价上半年前一百名</span>;
+            <input type="checkbox" value="4"><span del="0">教学评价下半年前一百名</span>;
+            分数:<input type="number" class="valueCls ipt fourValue" onchange="changeFourTotal(this)">
+            <br>
+            </p>
+        </div>
+    </div>
+</div>
+<img class="appendItem" onclick="appendItem(this)" th:src="@{//images/append.jpg}" src="../static/images/append.jpg" alt="">
+<img class="deleteItem" onclick="deleteItem(this)" th:src="@{//images/delete.jpg}" src="../static/images/delete.jpg" alt="">
+<h4>教学获奖情况</h4>
+<div itemId="0" class="childItem fourItem2">
+    <div class="items">
+        <div class="rewardItems">
+            <select class="rewardSelect" id="one1" name="reward">
+                <option selected="selected" value="获奖情况">获奖情况</option>
+                <option value="教育/技能竞赛">教育/技能竞赛</option>
+                <option value="模范优秀教师">模范优秀教师</option>
+                <option value="教学名师/教学能手">教学名师/教学能手</option>
+                <option value="指导学生获得技能竞赛">指导学生获得技能竞赛</option>
+            </select>
+            奖项等级:<input type="text" class="ipt" placeholder="如:一等奖">
+            奖项名称: <input type="text" class="nameCls ipt">
+            获奖时间: <input type="text" onchange="matchYear(this)" placeholder="例如:2018-12-13" class="nameCls ipt">
+            分值: <input type="number" class="valueCls ipt fourValue" min="0" onchange="changeFourTotal(this)">
+            附件:
+            <span>
+                <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+                <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+            </span>
+            <img src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+        </div>
+    </div>
+</div>
+<img class="appendItem" onclick="appendItem(this)" th:src="@{//images/append.jpg}" src="../static/images/append.jpg" alt="">
+<img class="deleteItem" onclick="deleteItem(this)" th:src="@{//images/delete.jpg}" src="../static/images/delete.jpg" alt="">
+<p>在校级教学评比活动中获优秀个人奖励次数:<input type="number" id="excellentCount" class="valueCls" onchange="changeToFour(this)"></p>
+<h4>教学改革与研究</h4>
+<section>总分值: <input type="number" name="fiveTotal" value="0" id="fiveTotal" disabled><br></section>
+<div class="items">
+    <h4>教学成果项目</h4>
+    <div itemId="0" class="childItem fiveItem1">
+        <div class="modal-body">
+            <div class="rewardItems">
+                奖项名称: <input type="text" class="nameCls ipt">
+                <select class="rewardSelect" name="reward">
+                    <option selected="selected" value="奖项级别">奖项级别</option>
+                    <option value="国家级">国家级</option>
+                    <option value="省级">省级</option>
+                    <option value="校级">校级</option>
+                </select>
+                <select>
+                    <option selected="selected" value="奖项类型">奖项类型</option>
+                    <option value="特等奖">特等奖</option>
+                    <option value="一等奖">一等奖</option>
+                    <option value="二等奖">二等奖</option>
+                    <option value="三等奖">三等奖</option>
+                </select>
+                <select>
+                    <option selected="selected" value="人数">人数</option>
+                    <option value="一人组">一人组</option>
+                    <option value="两人组">两人组</option>
+                    <option value="三人组">三人组</option>
+                    <option value="四人组">四人组</option>
+                    <option value="五人组及以上">五人组及以上</option>
+                </select>
+                <select>
+                    <option selected="selected" value="排名">排名</option>
+                    <option value="第一名">第一名</option>
+                    <option value="第二名">第二名</option>
+                    <option value="第三名">第三名</option>
+                    <option value="第四名">第四名</option>
+                    <option value="第五名">第五名</option>
+                </select>
+                获奖时间: <input type="text" onchange="matchYear(this)" placeholder="例如:2018-12-13" class="nameCls ipt">
+                分值: <input type="number" class="valueCls ipt fiveValue" onchange="changeFiveTotal(this)">
+                附件:
+                <span>
+            <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+            <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+        </span>
+                <img src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+            </div>
+        </div>
+    </div>
+    <img class="appendItem" onclick="appendItem(this)" th:src="@{//images/append.jpg}" src="../static/images/append.jpg" alt="">
+    <img class="deleteItem" onclick="deleteItem(this)" th:src="@{//images/delete.jpg}" src="../static/images/delete.jpg" alt="">
+    <br>
+    <h4>教研改论文发表</h4>
+    <div itemId="0" class="childItem fiveItem2">
+        <div class="modal-body">
+            <div class="rewardItems">
+                论文名称: <input type="text" class="nameCls ipt">
+                期刊名称: <input type="text" class="nameCls ipt">
+                发表时间: <input type="text" placeholder="例如:2018-12-13" class="nameCls ipt">
+                <select>
+                    <option selected="selected" value="合著/独著">合著/独著</option>
+                    <option value="独著">独著</option>
+                    <option value="合著">合著</option>
+                </select>
+                <select>
+                    <option selected="selected" value="排名">排名</option>
+                    <option value="第一名">第一名</option>
+                    <option value="第二名">第二名</option>
+                    <option value="第三名">第三名</option>
+                    <option value="第四名">第四名</option>
+                    <option value="第五名">第五名</option>
+                </select><br>
+                起始页码: <input type="text" min="1" class="valueCls ipt">
+                截止页码: <input type="text" min="2" class="valueCls ipt">
+                <select>
+                    <option selected="selected" value="级别">级别</option>
+                    <option value="A类">A类</option>
+                    <option value="B类">B类</option>
+                    <option value="C类">C类</option>
+                    <option value="D类">D类</option>
+                    <option value="E类">E类</option>
+                </select>
+                分值: <input type="number" class="valueCls ipt fiveValue" onchange="changeFiveTotal(this)">
+                附件:
+                <span>
+            <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+            <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+        </span>
+                <img src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+            </div>
+        </div>
+    </div>
+    <img class="appendItem" onclick="appendItem(this)" th:src="@{//images/append.jpg}" src="../static/images/append.jpg" alt="">
+    <img class="deleteItem" onclick="deleteItem(this)" th:src="@{//images/delete.jpg}" src="../static/images/delete.jpg" alt="">
+    <span id="nextProject"></span>
+    <h4>编写教材</h4>
+    <div itemId="0" class="childItem fiveItem3">
+        <div class="modal-body" id="">
+            <div class="rewardItems">
+                教材名称: <input type="text" class="nameCls ipt">
+                出版社名称: <input type="text" class="nameCls ipt">
+                出版时间: <input type="text" onchange="matchYear(this)" placeholder="例如:2018-12-13" class="nameCls ipt">
+                <select>
+                    <option selected="selected" value="0">合著/独著</option>
+                    <option value="独著">独著</option>
+                    <option value="合著">合著</option>
+                </select>
+                <select>
+                    <option selected="selected" value="主编/参编">主编/参编</option>
+                    <option value="主编">主编</option>
+                    <option value="参编">参编</option>
+                </select>
+                <select class="rewardSelect" name="reward">
+                    <option selected="selected" value="级别">级别</option>
+                    <option value="国家级统编、规划教材">国家级统编、规划教材</option>
+                    <option value="省级统编、规划教材">省级统编、规划教材</option>
+                    <option value="公开出版教材">公开出版教材</option>
+                </select>
+                分值: <input type="number" class="valueCls ipt fiveValue" onchange="changeFiveTotal(this)">
+                附件:
+                <span>
+            <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+            <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+        </span>
+                <img src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+            </div>
+        </div>
+    </div>
+    <img class="appendItem" onclick="appendItem(this)" th:src="@{//images/append.jpg}" src="../static/images/append.jpg" alt="">
+    <img class="deleteItem" onclick="deleteItem(this)" th:src="@{//images/delete.jpg}" src="../static/images/delete.jpg" alt="">
+<h4>教研改课题</h4>
+<div itemId="0" class="childItem fiveItem4">
+    <div class="modal-body">
+        <div class="rewardItems">
+            项目名称: <input type="text" class="nameCls">
+            <select class="rewardSelect" name="reward">
+                <option selected="selected" value="级别">级别</option>
+                <option value="国家级">国家级</option>
+                <option value="省级">省级</option>
+                <option value="校级">校级</option>
+            </select>
+            立项时间: <input type="text" onchange="matchYear(this)" placeholder="例如:2018-12-13" class="nameCls ipt">
+            结题时间:<input type="text" onchange="matchYear(this)" placeholder="例如:2018-12-13" class="nameCls ipt">
+            <select>
+                <option selected="selected" value="团队人数">团队人数</option>
+                <option value="一人组">一人组</option>
+                <option value="两人组">两人组</option>
+                <option value="三人组">三人组</option>
+                <option value="四人组">四人组</option>
+                <option value="五人组及以上">五人组及以上</option>
+            </select>
+            <select>
+                <option selected="selected" value="排名">排名</option>
+                <option value="第一名">第一名</option>
+                <option value="第三名">第二名</option>
+                <option value="第三名">第三名</option>
+                <option value="第四名">第四名</option>
+                <option value="第五名">第五名</option>
+            </select>
+            分值: <input type="number" class="valueCls ipt fiveValue" onchange="changeFiveTotal(this)">
+            附件:
+            <span>
+                <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+                <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+            </span>
+            <img src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+        </div>
+    </div>
+</div>
+<img class="appendItem" onclick="appendItem(this)" th:src="@{//images/append.jpg}" src="../static/images/append.jpg" alt="">
+<img class="deleteItem" onclick="deleteItem(this)" th:src="@{//images/delete.jpg}" src="../static/images/delete.jpg" alt="">
+<hr>
+<h4>教学质量工程项目</h4>
+<div itemId="0" class="childItem fiveItem5">
+    <div class="modal-body">
+        <div class="rewardItems">
+            项目名称: <input type="text" class="nameCls ipt">
+            <select class="rewardSelect">
+                <option selected="selected" value="项目级别">项目级别</option>
+                <option value="国家级">国家级</option>
+                <option value="国家级">省级</option>
+                <option value="校级">校级</option>
+            </select>
+            立项时间: <input type="text" onchange="matchYear(this)" placeholder="例如:2018-12-13" class="nameCls ipt">
+            结题时间: <input type="text" onchange="matchYear(this)" placeholder="例如:2018-12-13" class="nameCls ipt">
+            <select>
+                <option selected="selected" value="团队人数">团队人数</option>
+                <option value="一人组">一人组</option>
+                <option value="两人组">两人组</option>
+                <option value="三人组">三人组</option>
+                <option value="四人组">四人组</option>
+                <option value="五人组及以上">五人组及以上</option>
+            </select>
+            <select>
+                <option selected="selected" value="排名">排名</option>
+                <option value="第一名">第一名</option>
+                <option value="第二名">第二名</option>
+                <option value="第三名">第三名</option>
+                <option value="第四名">第四名</option>
+                <option value="第五名">第五名</option>
+            </select>
+            分值: <input type="number" class="valueCls ipt fiveValue" onchange="changeFiveTotal(this)">
+            附件:
+            <span>
+                <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+                <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+            </span>
+            <img src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+        </div>
+    </div>
+</div>
+<img class="appendItem" onclick="appendItem(this)" th:src="@{//images/append.jpg}" src="../static/images/append.jpg" alt="">
+<img class="deleteItem" onclick="deleteItem(this)" th:src="@{//images/delete.jpg}" src="../static/images/delete.jpg" alt="">
+<hr>
+<h4>创新创业计划项目</h4>
+<div itemId="0" class="childItem fiveItem6">
+    <div class="modal-body">
+        <div class="rewardItems">
+            项目名称: <input type="text" class="nameCls ipt">
+            <select class="rewardSelect" name="reward">
+                <option selected="selected" value="0">创新创业计划</option>
+                <option value="国家级">国家级</option>
+                <option value="省级">省级</option>
+                <option value="校级">校级</option>
+            </select>
+            立项时间: <input type="text" onchange="matchYear(this)" placeholder="例如:2018-12-13" class="nameCls ipt">
+            结题时间: <input type="text" onchange="matchYear(this)" placeholder="例如:2018-12-13" class="nameCls ipt">
+            分值: <input type="number" class="valueCls ipt fiveValue" onchange="changeFourTotal(this)">
+            附件:
+            <span>
+                <img src="../static/images/attachment.jpg" alt="" class="userUploadImage" originImg='0' onclick="showImage(this)">
+                <section  onclick="removeImage(this)" class="glyphicon glyphicon-remove-circle"></section>
+            </span>
+            <img src="../static/images/append.png" onclick='addAttach(this)' originImg='0'>
+        </div>
+    </div>
+</div>
+    <img class="appendItem" onclick="appendItem(this)" th:src="@{//images/append.jpg}" src="../static/images/append.jpg" alt="">
+    <img class="deleteItem" onclick="deleteItem(this)" th:src="@{//images/delete.jpg}" src="../static/images/delete.jpg" alt="">
+</div>
+</div>
+<div style="text-align: center;font-size: 30px;margin-top: 10px">
+    <button style="font-size: 30px;background: lightseagreen;color: white;border-radius: 10px">
+    <a href="#" onclick="collectAll()">
+        保存数据
+    </a>
+    </button>
+</div>
+<img src="../static/images/attachment.jpg" style="display: none" id="imgElement">
+<span id="tips" style="position: fixed;;z-index: 9999;top: 10%;color: white;border-radius: 3px;background:red ;display: none;font-weight: 400;font-size: 22px">
+
+</span>
+<div class="modal fade" id="technologyResultValue" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <a id="openPDF" href="../images/open.pdf"></a>
+            </div>
+            <div class="modal-footer" style="text-align: center">
+                <p>注:本地上传的PDF文件不支持直接预览!需要保存数据才能使用!</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="imgResult" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img id="imgShow" src="" style="height: 100%;width: 100%" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<input type="file" onchange='uploadFiles(this)'  id="fileItem" style="display: none;">
+</body>
+<script type="application/javascript">
+    //教育/技能竞赛获奖
+    fileData=new Array();
+    function collectAll() {
+        fromData=new FormData();
+        fromData.append("education",collectOneData());
+        fromData.append("moral",collectTwoData());
+        fromData.append("workload",collectThreeData());
+        fromData.append("reward",collectFourData());
+        fromData.append("research",collectFiveData());
+        $.ajax({
+            type: 'post',
+            url: '/writeTable1',
+            data: fromData,
+            async:'true',
+            success: function (result) {
+                try {
+                    result=JSON.parse(result);
+                    if(result.code=="0"){
+                        imgElement.src=result.msg;
+                    }
+                }catch (e) {
+                    console.log(e);
+                    return
+                }
+            },
+            contentType:false,
+            processData:false,
+        });
+    }
+    function changeValue(t) {
+        t.nextElementSibling.value='';
+        document.getElementById('threeTotal').value='';
+    }
+    function getMore(t) {
+        document.getElementById('openPDF').setAttribute("href","../images/three.pdf");
+        $('#openPDF').media({width:'100%', height:window.innerHeight*0.8});
+        $('#test').click();
+    }
+    function showBigImg(t) {
+        document.getElementById('imgShow').src=t.src;
+        $('#test2').click();
+    }
+    function addAttach(t) {
+        newImg=t.previousElementSibling.cloneNode(true);
+        newImg.setAttribute('itemId',(parseInt(newImg.getAttribute('itemId'))+1));
+        t.parentNode.insertBefore(newImg,t);
+        t.previousElementSibling.firstElementChild.src=defaultImage;
+    };
+    //该处增加事件,让当点击的时候自动修改总分
+    document.getElementById('edu').addEventListener('change',function () {
+        document.getElementById('oneTotal').value=this.value;
+    });
+    $('.radio-inline').each(function () {
+        //用户选择师德师风的时候修改总分
+        this.addEventListener("click",function () {
+            document.getElementById('twoTotal').value=this.firstElementChild.value;
+        })
+    });
+    function changeThreeTotal(t) {
+        //用户输入工作分值的时候,自动计算是正数还是负数
+        sign=document.getElementById('oddAdd').value!='0'?'-':'+';
+        element=document.getElementById('threeTotal');
+        if(isNaN(Number(sign+t.value))){
+            element.value='0';
+            return
+        }
+        element.value=Number(sign+t.value)+25;
+        if(element.value>30){
+            element.value=30;
+        }
+    };
+    function matchYear(t) {
+        var reg = /^[1-9]\d{3}-(0[1-9]|1[0-2]|[1-9])-(0[1-9]|[1-9]|[1-2][0-9]|3[0-1])$|[1-9]\d{3}-(0[1-9]|1[0-2]|[1-9])$/;
+        if(!reg.test(t.value)){
+            t.value='';
+        }
+    }
+    function changeFourTotal(t) {
+        //教学质量考评情况进行计算
+        if(t.value.indexOf('e')!=-1){
+            showTips("暂不支持E的科学记数法!");
+            return
+        }
+        fourValue=0;
+        $('.fourValue').each(function () {
+            fourValue+=Number(this.value);
+        });
+        $("#fourTotal").val(fourValue);
+    }
+    //教学评比的优秀个人单独计算
+    function changeToFour(t) {
+        if(t.value.indexOf('e')!=(-1)){
+            return
+        }
+        d=(0.5*Number(t.value));
+        fourValue=d;
+        $('.fourValue').each(function () {
+            fourValue+=Number(this.value);
+        });
+        $("#fourTotal").val(fourValue);
+    }
+    function changeFiveTotal(t) {
+        //将第四个项目进行计分
+        if(t.value.indexOf('e')!=-1){
+            showTips("暂不支持E的科学记数法!");
+            return
+        }
+        fiveValue=0;
+        $('.fiveValue').each(function () {
+            fiveValue+=Number(this.value);
+        });
+        $("#fiveTotal").val(fiveValue);
+    }
+    function gotoNextPage() {
+        window.location.href='writeTable1.html'
+    }
+    function showTips(msg) {
+        t = document.getElementById('tips');
+        t.innerText = '提示:'+msg;
+        t.style.left = (window.innerWidth - (t.innerText.length*16)) / 2 + 'px';
+        t.style.display = 'block';
+        setTimeout(function () {
+            t.style.display = 'none'
+        }, 5000);
+    };
+    defaultImage=document.getElementById('imgElement').src;
+
+    function appendItem(t) {
+        newImg=t.previousElementSibling.cloneNode(true);
+        newImg.setAttribute('itemId',(parseInt(newImg.getAttribute('itemId'))+1));
+        one=newImg.firstElementChild;
+        for (let i = 0; i < (newImg.childElementCount-1); i++) {
+            newImg.lastElementChild.previousElementSibling.click();
+            one=one.nextElementSibling;
+        }
+        //将所有的input进行情况
+        e=newImg.getElementsByTagName("input");
+        for (let i = 0; i <e.length ; i++) {
+            e[i].value='';
+        }
+        checkBoxs=$(newImg).find("input[type=checkbox]");
+        for (let t = 0; t <checkBoxs.length ; t++) {
+            checkBoxs[t].checked="";
+        }
+        //
+        //将所有的文件栏进行清空
+        n=$(newImg).find("span");
+        for (let i = 0; i < n.length; i++) {
+            if(n[i].getAttribute("del")=="0"){
+                continue
+            }
+            if(i!=0){
+                n[i].parentElement.removeChild(n[i]);
+            }
+        }
+        //将所有的textarea全部清空
+        n=$(newImg).find("textarea");
+        for (let i = 0; i < n.length; i++) {
+            n[i].value='';
+        }
+        //将首图片进行情况,同时保留最后一个文件
+        e=newImg.getElementsByTagName("img");
+        for (let i = 0; i <e.length-1 ; i++) {
+            e[i].src=defaultImage;
+        }
+        t.parentNode.insertBefore(newImg,t);
+    }
+    
+    function deleteItem(t) {
+            if(t.previousElementSibling.previousElementSibling.getAttribute('itemId')=='0'){
+                return
+            }
+            t.parentElement.removeChild(t.previousElementSibling.previousElementSibling);
+    }
+    fileData=new Array();
+    allowSuffixList=['PDF',"JPG","PNG","GIF","JPEG"];
+
+    function uploadFiles(t) {
+        readIo=new FileReader();
+        if(!t.files[0]){
+            return
+        }
+        v=t.value;
+        try{
+            d=v.split('.');
+            if(d.length<2){
+                showTips('目前只支持PDF和图片类型的文件进行上传!');
+                return
+            }
+            suffix=d[d.length-1];
+        }catch (e) {
+            console.log(e);
+            return
+        }
+        if(allowSuffixList.indexOf(suffix.toUpperCase())==(-1)){
+            showTips('目前只支持PDF和图片类型的文件进行上传!');
+            return
+        }
+        console.log("文件未监测到异常");
+        if(fileData.length>0){
+            imgElement=fileData.pop();
+        }
+        data=new FormData();
+        data.append("file",t.files[0]);
+        $.ajax({
+            type: 'post',
+            url: '/uploadFile',
+            data: data,
+            async:'true',
+            success: function (result) {
+                try {
+                    result=JSON.parse(result);
+                    if(result.code=="0"){
+                        imgElement.src=result.msg;
+                    }
+                }catch (e) {
+                    console.log(e);
+                    return
+                }
+            },
+            contentType:false,
+            processData:false,
+        });
+        t.value="";
+        t.outerHTML=t.outerHTML;
+    };
+    function removeImage(t) {
+        t.previousElementSibling.src=defaultImage;
+        t.previousElementSibling.setAttribute('originImg','0');
+    }
+    function showImage(e) {
+        imgPrefix = e.src.lastIndexOf("/");
+        fileFormat = e.src.substring(imgPrefix + 1,e.src.length);
+        if(fileFormat=="pdfImg.jpg"||(e.src.indexOf('image')==-1)&&(fileFormat!="attachment.jpg")){
+            //打开一个新界面显示文件内容
+            getMore(e);
+            return
+        }
+        if(e.getAttribute('originImg')!='0'){
+            //展示大图
+            if(fileFormat=="attachment.jpg"){
+                document.getElementById("fileItem").click();
+                fileData.push(e);
+                return
+            }
+            showBigImg(e);
+            return
+        }
+        document.getElementById("fileItem").click();
+        fileData.push(e);
+    }
+    function collectOneData(){
+        data=new Object();
+        data.userScore=$("#oneTotal").val();
+        se=$('#education').find('select');
+        for (let i = 0; i < se.length; i++) {
+            switch (i){
+                case 0:{
+                    n='degree';
+                    break;
+                }
+                case 1:{
+                    n="edu";
+                    break;
+                }
+            }
+            data[n]=se[i].options[se[i].selectedIndex].text
+        }
+        data["files"]=new Array();
+        imgItem=$('#education').find('img');
+        imgTotal=0;
+        for (let i = 0; i < imgItem.length-1; i++) {
+            if(imgItem[i].src==defaultImage){
+                continue
+            }
+            data["files"].push(imgItem[i].src);
+            imgTotal++;
+        }
+        try {
+            d=JSON.stringify(data)
+            return d
+        }catch (e) {
+            console.log(e)
+            return ""
+        }
+    }
+    function collectTwoData(){
+        data=new Object();
+        se=$('#moralItem').find('input:checked')[0];
+        data["userScore"]=se.value;
+        data["level"]=se.nextElementSibling.innerText;
+        data["files"]=new Array();
+        imgItem=$('#moralItem').find('img');
+        imgTotal=0;
+        for (let i = 0; i < imgItem.length-1; i++) {
+            if(imgItem[i].src==defaultImage){
+                continue
+            }
+            data["files"].push(imgItem[i].src);
+            imgTotal++;
+        }
+        try {
+            d=JSON.stringify(data)
+            return d
+        }catch (e) {
+            console.log(e)
+            return ""
+        }
+    }
+    $('#workloadScore').bind('change',function () {
+        sign=this.previousElementSibling;
+        t=document.getElementById('threeTotal');
+        t.value=(25+Number((sign.value==0?'+':'-')+this.value));
+        if(t.value>30){
+            t.value=30;
+        }
+    });
+    //
+    function collectThreeData(){
+        data=new Object();
+        data['userScore']=$('#threeTotal').val();
+        data['workloadScore']=$('#workloadScore').val();
+        t=document.getElementById('oddAdd');
+        data['sign']=t.options[t.selectedIndex].text;
+        data['workload']=$('#yearTotal').val();
+        data["files"]=new Array();
+        imgItem=$('#workload').find('img');
+        imgTotal=0;
+        for (let i = 0; i < imgItem.length-1; i++) {
+            if(imgItem[i].src==defaultImage){
+                continue
+            }
+            data["files"].push(imgItem[i].src);
+            imgTotal++;
+        }
+        try {
+            d=JSON.stringify(data)
+            return d
+        }catch (e) {
+            console.log(e)
+            return ""
+        }
+    }
+    function collectFourData(){
+        data=new Object();
+        data['userScore']=$('#fourTotal').val();//总分
+        data['excellentCount']=$('#excellentCount').val();//获得个人优秀的总次数
+        data["quality"]=new Array();
+        $('.fourItem1').each(function (n,e) {
+            data["quality"][n]=new Object();
+            s=$(this).find(".ipt");
+            for (let i = 0; i <s.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="date";
+                        break
+                    }
+                    case 1:{
+                        k="score"
+                    }
+                }
+                //获取教学评价等等checked信息
+                data["quality"][n][k]=s[i].value;
+            }
+            t=$(this).find("input[type=checkbox]");
+            for (let i = 0; i <t.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="pass";
+                        break
+                    }
+                    case 1:{
+                        k="excellent";
+                        break
+                    }
+                    case 2:{
+                        k="up100";
+                        break
+                    }
+                    case 3:{
+                        k="down100";
+                        break
+                    }
+                }
+                data["quality"][n][k]=t[i].checked==""?"":t[i].nextElementSibling.innerText;
+            }
+            console.log(data);
+            imgItem=$(this).find('img');
+            imgTotal=0;
+            data["quality"][n]["files"]=new Array();
+            for (let i = 0; i < imgItem.length-1; i++) {
+                if (imgItem[i].src == defaultImage) {
+                    continue
+                }
+                data["quality"][n]["files"].push(imgItem[i].src);
+                imgTotal++;
+            }
+        });
+        //获取第二项的信息
+        data['reward']=new Array();
+        $('.fourItem2').each(function (n,e) {
+            data['reward'][n]=new Object();
+            s=$(this).find(".ipt");
+            for (let i = 0; i <s.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="title";
+                        break
+                    }
+                    case 1:{
+                        k="level";
+                        break
+                    }
+                    case 2:{
+                        k="date";
+                        break
+                    }
+                    case 3:{
+                        k="score";
+                        break
+                    }
+                }
+                data['reward'][n][k]=s[i].value;
+            }
+            t=$(this).find("select");
+            for (let i = 0; i <t.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="type";
+                        break
+                    }
+                }
+                data['reward'][n][k]=t[i].options[t[i].selectedIndex].text;
+            }
+            imgItem=$(this).find('img');
+            imgTotal=0;
+            data["reward"][n]["files"]=new Array();
+            for (let i = 0; i < imgItem.length-1; i++) {
+                if(imgItem[i].src==defaultImage){
+                    continue
+                }
+                data["reward"][n]["files"].push(imgItem[i].src);
+                imgTotal++;
+            }
+        });
+        try {
+            d=JSON.stringify(data)
+            return d
+        }catch (e) {
+            console.log(e)
+            return ""
+        }
+    }
+    function collectFiveData(){
+        data=new Object();
+        data['userScore']=$('#fiveTotal').val()
+        // 教学成果项目
+        data['result']=new Array();
+        $('.fiveItem1').each(function (d,e){
+            data['result'][d]=new Object();
+            s=$(this).find(".ipt");
+            for (let i = 0; i <s.length ; i++) {
+                switch (i){
+                    case 0:{
+                        n="title";
+                        break
+                    }
+                    case 1:{
+                        n="date";
+                        break
+                    }
+                    case 2:{
+                        n="score";
+                        break
+                    }
+                }
+                data['result'][d][n]=s[i].value;
+            }
+            t=$(this).find("select");
+            for (let i = 0; i <t.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="level";
+                        break
+                    }
+                    case 1:{
+                        k="type";
+                        break
+                    }
+                    case 2:{
+                        k="count";
+                        break
+                    }
+                    case 3:{
+                        k="rank";
+                        break
+                    }
+                }
+                data['result'][d][k]=t[i].options[t[i].selectedIndex].text;
+            }
+            imgItem=$(this).find('img');
+            imgTotal=0;
+            data["result"][d]["files"]=new Array();
+            for (let i = 0; i < imgItem.length-1; i++) {
+                if(imgItem[i].src==defaultImage){
+                    continue
+                }
+                data["result"][d]["files"].push(imgItem[i].src);
+                imgTotal++;
+            }
+        });
+        //获取第二项  教研改论文发表
+        data['paper']=new Array();
+        $('.fiveItem2').each(function (d,e) {
+            data['paper'][d]=new Object();
+            s=$(this).find(".ipt");
+            for (let i = 0; i <s.length ; i++) {
+                switch (i){
+                    case 0:{
+                        n="title";
+                        break
+                    }
+                    case 1:{
+                        n="name";
+                        break
+                    }
+                    case 2:{
+                        n="date";
+                        break
+                    }
+                    case 3:{
+                        n="start";
+                        break
+                    }
+                    case 4:{
+                        n="end";
+                        break
+                    }
+                    case 5:{
+                        n="score";
+                        break
+                    }
+                }
+                data['paper'][d][n]=s[i].value;
+            }
+            t=$(this).find("select");
+            for (let i = 0; i <t.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="cooperate";
+                        break
+                    }
+                    case 1:{
+                        k="rank";
+                        break
+                    }
+                    case 2:{
+                        k="level";
+                        break
+                    }
+                }
+                data['paper'][d][k]=t[i].options[t[i].selectedIndex].text;
+            }
+            imgItem=$(this).find('img');
+            imgTotal=0;
+            data["paper"][d]["files"]=new Array();
+            for (let i = 0; i < imgItem.length-1; i++) {
+                if(imgItem[i].src==defaultImage){
+                    continue
+                }
+                data["paper"][d]["files"].push(imgItem[i].src);
+                imgTotal++;
+            }
+        });
+        //第三项   编写教材
+        data['book']=new Array();
+        $('.fiveItem3').each(function (d,e) {
+            data['book'][d]=new Object();
+            s=$(this).find(".ipt");
+            for (let i = 0; i <s.length ; i++) {
+                switch (i){
+                    case 0:{
+                        n="title";
+                        break
+                    }
+                    case 1:{
+                        n="pressTitle";
+                        break
+                    }
+                    case 2:{
+                        n="startDate";
+                        break
+                    }
+                    case 3:{
+                        n="score";
+                        break
+                    }
+                }
+                data['book'][d][n]=s[i].value;
+            }
+            t=$(this).find("select");
+            for (let i = 0; i <t.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="cooperate";
+                        break
+                    }
+                    case 1:{
+                        k="rank";
+                        break
+                    }
+                    case 2:{
+                        k="level";
+                        break
+                    }
+                }
+                data['book'][d][k]=t[i].options[t[i].selectedIndex].text;
+            }
+            imgItem=$(this).find('img');
+            imgTotal=0;
+            data["book"][d]["files"]=new Array();
+            for (let i = 0; i < imgItem.length-1; i++) {
+                if(imgItem[i].src==defaultImage){
+                    continue
+                }
+                data["book"][d]["files"].push(imgItem[i].src);
+                imgTotal++;
+            }
+        });
+        //第四项数据
+        data['course']=new Array();
+        $('.fiveItem4').each(function (d,e) {
+            data['course'][d]=new Object();
+            s=$(this).find(".ipt");
+            for (let i = 0; i <s.length ; i++) {
+                switch (i){
+                    case 0:{
+                        n="title";
+                        break
+                    }
+                    case 1:{
+                        n="startDate";
+                        break
+                    }
+                    case 2:{
+                        n="endStart";
+                        break
+                    }
+                    case 3:{
+                        n="score";
+                        break
+                    }
+                }
+                data['course'][d][n]=s[i].value;
+            }
+            t=$(this).find("select");
+            for (let i = 0; i <t.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="level";
+                        break
+                    }
+                    case 1:{
+                        k="count";
+                        break
+                    }
+                    case 2:{
+                        k="rank";
+                        break
+                    }
+                }
+                data['course'][d][k]=t[i].options[t[i].selectedIndex].text;
+            }
+            imgItem=$(this).find('img');
+            imgTotal=0;
+            data["course"][d]["files"]=new Array();
+            for (let i = 0; i < imgItem.length-1; i++) {
+                if(imgItem[i].src==defaultImage){
+                    continue
+                }
+                data["course"][d]["files"].push(imgItem[i].src);
+                imgTotal++;
+            }
+        });
+        //第五项数据
+        data['project']=new Array();
+        $('.fiveItem5').each(function (d,e) {
+            data['project'][d]=new Object();
+            s=$(this).find(".ipt");
+            for (let i = 0; i <s.length ; i++) {
+                switch (i){
+                    case 0:{
+                        n="title";
+                        break
+                    }
+                    case 1:{
+                        n="startDate";
+                        break
+                    }
+                    case 2:{
+                        n="endDate";
+                        break
+                    }
+                    case 3:{
+                        n="score";
+                        break
+                    }
+                }
+                data['project'][d][n]=s[i].value;
+            }
+            t=$(this).find("select");
+            for (let i = 0; i <t.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="level";
+                        break
+                    }
+                    case 1:{
+                        k="count";
+                        break
+                    }
+                    case 2:{
+                        k="rank";
+                        break
+                    }
+                }
+                data['project'][d][k]=t[i].options[t[i].selectedIndex].text;
+            }
+            imgItem=$(this).find('img');
+            imgTotal=0;
+            data["project"][d]["files"]=new Array();
+            for (let i = 0; i < imgItem.length-1; i++) {
+                if(imgItem[i].src==defaultImage){
+                    continue
+                }
+                data["project"][d]["files"].push(imgItem[i].src);
+                imgTotal++;
+            }
+        });
+        //创业信息
+        data['innovation']=new Array();
+        $('.fiveItem6').each(function (d,e) {
+            data['innovation'][d]=new Object();
+            s=$(this).find(".ipt");
+            for (let i = 0; i <s.length ; i++) {
+                switch (i){
+                    case 0:{
+                        n="title";
+                        break
+                    }
+                    case 1:{
+                        n="startDate";
+                        break
+                    }
+                    case 2:{
+                        n="endDate";
+                        break
+                    }
+                    case 3:{
+                        n="score";
+                        break
+                    }
+                }
+                data['innovation'][d][n]=s[i].value;
+                console.log(s[i].value);
+            }
+            t=$(this).find("select");
+            for (let i = 0; i <t.length ; i++) {
+                switch (i){
+                    case 0:{
+                        k="level";
+                        break
+                    }
+                }
+                data['innovation'][d][k]=t[i].options[t[i].selectedIndex].text;
+            }
+            imgItem=$(this).find('img');
+            imgTotal=0;
+            data["innovation"][d]["files"]=new Array();
+            for (let i = 0; i < imgItem.length-1; i++) {
+                if(imgItem[i].src==defaultImage){
+                    continue
+                }
+                data["innovation"][d]["files"].push(imgItem[i].src);
+                imgTotal++;
+            }
+        });
+        console.log(data)
+        try {
+            d=JSON.stringify(data);
+            return d
+        }catch (e) {
+            console.log(e);
+            return ""
+        }
+    }
+</script>
+</html>

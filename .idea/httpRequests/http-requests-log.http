@@ -1,0 +1,12 @@
+POST http://localhost:8080/index
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost:8080/index?account=123&pwd=43
+Accept: */*
+Cache-Control: no-cache
+
+###
+

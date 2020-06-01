@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <script type="text/javascript" src="../static/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../static/js/Util.js"></script>
+    <script type="text/javascript" src="../static/js/modal.js"></script>
+    <script type="text/javascript" src="../static/js/JqueryMedia.js"></script>
+    <meta charset="UTF-8">
+    <title>公示表信息</title>
+    <style type="text/css">
+        a{
+            text-decoration: none;
+        }
+        table {
+            border: 1px solid #3F6558;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 0 10px;
+            border: 1px solid #000000;
+            text-align: center;
+        }
+        body{
+            background: white;
+        }
+        td{
+            font-weight: 500;
+        }
+        th,td{
+            font-size: 20px;
+        }
+        .userInput{
+            border-radius: 0px;
+            border: 0px;
+            border-bottom: 1px solid black;
+            line-height: 20px;
+            text-align: left;
+            bottom: 5px;
+            position: relative;
+            background: white;
+            max-width: 10em;
+            width: 8em;
+        }
+        .sign{
+            width: 50%;
+            float: left;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        p{
+            text-align: left;
+        }
+        td,.sign {
+            font-size: 15px;
+            line-height: 20px;
+        }
+        .step1{
+            width: 3em;
+            border-left: 30px solid cyan;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+        }
+        .middle{
+            color: deepskyblue;
+        }
+        #images>.imgItems>img{
+            height: 40px;
+            width: 40px;
+            line-height: 40px;
+        }
+        #images>.imgItems{
+            float: left;
+            margin: 3px;
+        }
+        #appendImg,#appendItem{
+            height: 35px;
+            width: 35px;
+            font-size: 35px;
+            margin-left: 8px;
+            margin-top: 2px;
+        }
+        #uploadBar{
+            visibility: visible;
+            height: 20px;
+            margin: -10px 0px;
+        }
+        select{
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+        .iptItems{
+            margin: 6px 0px;
+            position: relative;
+        }
+        .iptItems>input{
+            text-align: left;
+        }
+        .iptItems>img{
+            height: 40px;
+            width: 40px;
+            margin-top: -5px;
+        }
+        .glyphicon-edit{
+            font-size: 24px;
+            margin: 3px 0px;
+        }
+        #qualityItem{
+            text-align: left;
+            margin: 0px;
+        }
+        #qualityItem>label{
+            margin: 5px 0px;
+
+        }
+        .userUploadImage{
+            height: 40px;
+            width: 40px;
+        }
+        #getReward>.row{
+            /*text-align: left;*/
+            margin: 5px 0px;
+        }
+        label>span>input{
+            width: 20%;
+        }
+        input{
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            margin: 5px 5px;
+        }
+        a:active{
+            color: #ffffff;
+        }
+        *{
+            color: #000;
+        }
+        a:hover{
+            text-decoration:none;
+        }
+        a:active{
+            text-decoration:none;
+        }
+        body{
+            margin: 20px;
+            padding: 20px;
+        }
+        .items{
+            border-radius: 5px;
+            border:solid 1px black;
+            padding: 5px;
+        }
+        img{
+            height: 50px;
+            width: 50px;
+            text-align: center;
+        }
+        body{
+            width: 80%;
+            margin: auto;
+        }
+        .items{
+            margin: 3px 0px;
+        }
+        .glyphicon{
+            top: -12px;
+            left: -20px;
+            position: relative;
+            height: 5px;
+            width: 5px;
+        }
+        #education{
+            padding-left: 30%;
+        }
+    </style>
+</head>
+<body>
+<div class="row" style="border-bottom: solid 1px antiquewhite;padding-top: 10px">
+    <div class="col-md-4">工号:2018200962</div>
+    <div class="col-md-4">
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+                填写:参评人员教学工作综合测评计分表
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4" style="top: -8px;">
+        <img src="../static/images/defuser.png" alt="" style="height: 40px;width: 40px">
+        妖孽只在夜里哭
+    </div>
+</div>
+<div style="display: none;">
+    <a id="test" href="#technologyResultValue" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#technologyResultValue" style="float: right;">
+    </a>
+    <a id="test2" href="#imgResult" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#imgResult" style="float: right;">
+    </a>
+</div>
+<h4>填写更多详细信息</h4>
+<div class="items" id="education">
+    <form action="" id="data">
+        参加工作时间:<input type="text" name="startDate"><br>
+        所学专业:<input type="text" name="major"><br>
+        现从事专业:<input type="text" name="currentMajor"><br>
+        外语成绩:<input type="text" name="english"><br>
+        计算机成绩:<input type="text" name="compute"><br>
+        是否破格:<input type="text" name="extraordinary"><br>
+        现任专业技术职务:<input type="text" name="work" placeholder="技术职务"><br>
+        上任专业技术职务时间<input type="text" name="workDate" placeholder="上任时间"><br>
+        毕业时间:<input type="text" name="gradeDate"><br>
+        毕业学校:<input type="text" name="school"><br>
+        学习类型:<input type="text" name="studyType"><br>
+        指导青年教师情况:<textarea id="guiseTeacher" name="guiseTeacher" cols="20" rows="2"></textarea><br><br>
+        指导研究生情况:<textarea id="guiseGraduate" name="guiseGraduate" cols="20" rows="2"></textarea><br><br>
+        主持研究项目数:<input type="text" name="projectCount"><br>
+        参与研究项目数:<input type="text" name="researchCount"><br>
+        获得成果奖励数:<input type="text" name="rewardCount"><br>
+        成果鉴定项目数:<input type="text" name="resultCount"><br>
+        技术开发或社会服务项目数:<input type="text" name="technologyCount"><br>
+    </form>
+</div>
+<hr>
+<div style="text-align: center;font-size: 30px;margin-top: 10px">
+    <button type="button" onclick="collectAllData()" style="font-size: 30px;background: lightseagreen;color: white;border-radius: 10px">
+        保存数据
+    </button>
+</div>
+<img src="../static/images/defuser.png" style="display: none" id="imgElement">
+<span id="tips" style="position: fixed;;z-index: 9999;top: 10%;color: white;border-radius: 3px;background:red ;display: none;font-weight: 400;font-size: 22px">
+</span>
+</body>
+<script type="application/javascript">
+    function collectAllData() {
+        formObj=new Object();
+        $("input").each(function () {
+           formObj[this.name]=this.value
+        });
+        formObj["guiseTeacher"]=$('#guiseTeacher').val();
+        formObj["guiseGraduate"]=$('#guiseGraduate').val();
+        data = new FormData();
+        data.append("Detail",JSON.stringify(formObj));
+        $.ajax({
+            type: 'post',
+            url: '/writeTable3',
+            data: data,
+            async:'true',
+            success: function (result) {
+                try {
+                    console.log(result);
+                    if(result.code=='0'){
+                        console.log("finished");
+                    }
+                    document.getElementById('tips').innerText=result.message;
+                }catch (e) {
+                    console.log(e);
+                    return
+                }
+            },
+            contentType:false,
+            processData:false,
+        });
+    }
+</script>
+</html>
